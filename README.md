@@ -1,7 +1,5 @@
 # 4G/5G Bands & Combos UI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.
-
 ## Environments
 
 * Production https://cacombos.com
