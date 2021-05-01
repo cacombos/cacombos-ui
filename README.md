@@ -54,7 +54,7 @@ docker-compose build
 docker-compose up -d
 ```
 
-You can then modify files locally and see changes via browser https://localhost:4200
+You can then modify files locally and see changes via browser http://localhost:4200
 
 ### Without Docker
 
