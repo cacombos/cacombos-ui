@@ -1,0 +1,458 @@
+<div class="container">
+    <h1> How to contribute? </h1>
+    <p> Please help us build better website by sending your device UE Capability or any log file includes Carrier
+        Aggregation and Dual Connectivity combinations. We will publish supported combinations on our website.
+    <h2> 1. Get Carrier Aggregation combinations from your device </h2>
+    <p> There is many way to get Carrier Aggregation combinations from devices. Here are instructions for mobile phones.
+    </p>
+    <ngb-accordion>
+        <ngb-panel id="toggle-1" title="Qualcomm diag" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p> <i> This method should work every Qualcomm Android-devices and it require root.</i> </p>
+                <p> Download and extract <a target="_blank"
+                        href="https://developer.android.com/studio/releases/platform-tools">platform-tools</a> to your
+                    computer. On Linux you can install this also via package manager. </p>
+                <p>Open your computer Terminal. On Windows use PowerShell or CMD and run command to on platform-tools
+                    directory.</p>
+                <p> Connect your device with USB to your computer. You have to enable <a target="_blank" rel="noopener" href="https://developer.android.com/studio/debug/dev-options#enable">developer options</a> in Android settings and USB-debugging.</p>
+                <figure class="highlight">
+                    <pre>adb shell</pre>
+                </figure>
+                <p> now with adb shell, download Diag.cfg configuration file to diag_logs directory.</p>
+                <figure class="highlight">
+                    <pre>$ cd /sdcard
+$ mkdir diag_logs
+$ cd diag_logs
+$ curl https://cacombos.com/assets/Diag.zip > Diag.zip
+$ unzip Diag.zip</pre>
+                </figure>
+                <p>Now we are ready to start logging. You have to now use su to get root-permission and then start
+                    logging with diag_mdlog command</p>
+                <figure class="highlight">
+                    <pre>$ su
+# diag_mdlog -o /sdcard/diag_logs -f /sdcard/diag_logs/Diag.cfg -m /sdcard/diag_logs/Diag.cfg</pre>
+                </figure>
+                <img class="img-fluid" src="/assets/photo_2020-10-19_23-26-52.jpg" />
+                <p> During logging, put your phone to <a target="_blank" rel="noopener"
+                        href="https://support.google.com/pixelphone/answer/2819583?hl=en">Airplane Mode</a> on and then
+                    off and wait two minute so your phone will connect back to network. Use keyboard combo <kbd>CTRL +
+                        C</kbd> to end logging on terminal/power shell/cmd. The log file will be saved to /sdcard/diag_log folder. </p>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-2" title="Scat (Qualcomm and Exynos)" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p> Scat will save modem log to qmdl file (Qualcomm only) and pcap (Qualcomm and Exynos).</p>
+                <h4> Install to Debian/Ubuntu</h4>
+                <p>Install some packages from package manager and clone forked scat from Github</p>
+                <figure class="highlight">
+                    <pre>sudo apt-get install git python3-usb python3-serial
+git clone https://github.com/HandyMenny/scat
+cd scat</pre>
+                </figure>
+                <h4> Install to MacOS</h4>
+                <p> Run these commands in <a target="_blank" rel="noopener" href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">MacOS terminal</a>.</p>
+                <figure class="highlight">
+                    <pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3 get-pip.py
+python3 -m pip install pysub
+python3 -m pip install pyserial
+python3 -m pip install libusb
+git clone https://github.com/HandyMenny/scat
+cd scat</pre>
+                </figure>
+                <h4> Install to Windows</h4>
+                <p> Install Python from <a target="_blank" rel="noopener"
+                        href="https://www.microsoft.com/en-us/p/python-38/9mssztt1n39l#activetab=pivot:overviewtab">Windows
+                        Store</a>
+                    and <a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></p>
+                <p> Open PowerShell with Administrator and install some python packages and clone repository.</p>
+                <figure class="highlight">
+                    <pre>cd C:
+pip3 install pyusb
+pip3 install pyserial
+git clone https://github.com/HandyMenny/scat
+cd scat</pre>
+                </figure>
+                <h4> Enable diag </h4>
+                <p>Connect your phone to your computer with USB and enable with these methods:</p>
+                <h5>Non-root methods</h5>
+                <p>Some devices allow enable USB-diag without root:</p>
+                <ul>
+                    <li>Samsung devices can enable diag calling <kbd>*#0808#</kbd> and then enable DM + RMNET + MODEM (Qualcomm) or RNDIS + ACM + DM + ADB (Exynos). Certain version of firmwares after 2018 blocking the access to hidden menu with code. No solution then without root.</li>
+                    <li>OnePlus, Realme and Oppo devices: Enable diag calling <kbd>*#8011#</kbd>. To disable, disable/enable USB Debugging in Developers Menu.</li>
+                    <li>Alcatel/TLC devices can enable diag call to <kbd>###2324#</kbd> until device promts Diag Protector OFF. </li>
+                    <li>Blackberry devices can enable diag calling to <kbd>*#46368676#*#*</kbd> to enter to Testing-menu and enable RMNET.</li>
+                </ul>
+                <h5>Root required methods</h5>
+                <p>These methods should work almost every rooted Android Qualcomm-devices</p>
+                <ul>
+                    <li>Install <a target="_blank" rel="noopener" href="https://developer.android.com/studio/releases/platform-tools">adb tools</a></li>
+                    <li>Open terminal or Powershell and run command <kbd>adb shell</kbd></li>
+                    <li>Run <code>su</code> to run super user priviledge command</li>
+                    <li>Then run command in adb shell:
+                        <ul>
+                            <li>If you have SDX24 or older: <code>setprop sys.usb.config diag</code></li>
+                            <li>If you have SDX50 or SDX55: <code>sys.usb.config diag,diag_mdm,qdss,qdss_mdm,serial_cdev,dpl,rmnet,adb</code></li>
+                            <li>If you have SDX60: <code>setprop sys.usb.ffs.ready 1; setprop sys.usb.configfs 1; setprop sys.usb.config diag,adb</code></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h4>Windows libusbK driver installation</h4>
+                <p>To Windows you have to install <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/libusbk/">libusbK driver</a>. Before install this driver you may have to uninstall Qualcomm diag driver first. Before you can install driver, you have to enable diag.</p>
+                <ul>
+                    <li>
+                        Select Create and install libusb-win32 device driver a package
+                    </li>
+                    <img class="img-fluid" src="/assets/photo_2020-08-15_21-27-14-1.jpg" />
+                    <li>
+                        On USB InfWizard, select libusbK
+                    </li>
+                    <img class="img-fluid" src="/assets/photo_2020-08-15_21-35-24.jpg" />
+                    <li>
+                        Select your phone interface. Some phones show multiple interface, It's same interface as you use for QPST example.
+                    </li>
+                    <img class="img-fluid" src="/assets/photo_2020-08-15_21-40-20.jpg" />
+                    <li>
+                        Select Client Installer and path where driver will be saved.
+                    </li>
+                    <img src="img-fluid" src="/assets/photo_2020-08-15_21-40-24.jpg" />
+                    <li>
+                        Now driver is created and you can start install by clicking Finnish / Install Driver Now. 
+                    </li>
+                    <img src="img-fluid" src="/assets/photo_2020-11-24_19-47-27.jpg" />
+                    <li> Click next to install driver to your computer. You can see installed driver in Device Manager</li>
+                </ul>
+                <h4> Run Scat</h4>
+                <p>Then use scat to record modem data to qmdl and pcap file. Use <kbd>lsusb</kbd> command on Linux/MacOS to set device address parameter, example <kbd>-a 001:010</kbd>. The first part before colon (:) is Bus, what is normally 001, or 002 and then second part after colon is USB device id. Check other parameters in scat <a target="_blank" rel="noopener" href="https://github.com/HandyMenny/scat">README.md</a> file.</p>
+                <p> For Qualcomm devices:</p>
+                <figure class="highlight">
+                    <pre>python3 ./scat.py -t qc -u -a 000:255 -i 0 --qmdl output.qmdl -F sim1.pcap</pre>
+                </figure>
+                <p> For Samsung Exynos:</p>
+                <figure class="highlight">
+                    <pre>python3 ./scat.py -t sec -m e303 -u -a 001:001  -i 4 -F sim1.pcap</pre>
+                </figure>
+                <p>During logging, switch your device to Airplane Mode, wait second and turn Airplane mode off. Wait a few minute to get connected to 4G LTE network. Stop logging with <kbd>CTRL+C.</kbd></p>
+                <p>If you like you can read pcap file with <a target="_blank" rel="noopener" href="https://www.wireshark.org/">Wireshark</a>. To convert qmdl, qmdl2 and dlf files to pcap, use scat: </p>
+                <figure class="highlight">
+                    <pre>python3 ./scat.py -t qc -d log.qmdl -F log.pcap</pre>
+                </figure>
+                <p>After logging, it's recommend turn off diag.</p>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-3" title="Network Signal Guru (Qualcomm, Exynos and Kirin, paid plan required)" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p><i>Require rooted Qualcomm, Exynos or Hisilicon device and 50$/month license. </i></p>
+                <p><a target="_blank" rel="noopener" href="https://www.qtrun.com/en/?page_id=34">Network Signal Guru</a> application offer read signaling information and give supported CA Combinations from UE Capability Information signaling message.</p>
+                <ul>
+                    <li>Open Network Signal Guru -application</li>
+                    <li>Go to Signaling-tab (swipe to right)</li>
+                    <li>Put phone to Airplane mode on and off and wait your phone connect to network.</li>
+                    <li>Find UE Capability Information message in Signaling. If you have 5G phone, you may see multiple UE Capability Information messages.</li>
+                    <img class="img-fluid" src="/assets/photo_2019-03-22_21-38-35.jpg" />
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-4" title="Cellular Pro (Qualcomm only, paid plan required)" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p><i>Require Qualcomm device and rooted. Require paid license 24$/mo or 240$/year</i></p>
+                <p><a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=make.more.r2d2.google.cellular_pro&hl=en" >Cellular-Pro</a> application allow read signaling information and give supported Carrier Aggregation combinations from UE Capability information signaling message.</p>
+                <ul>
+                    <li>Open Cellular Pro -application</li>
+                    <li>Go to Signal-tab</li>
+                    <li>Put phone to Airplane mode on and off and wait your phone connect to network.</li>
+                    <li>Find UE Capability Information message in Signaling. If you have 5G phone, you may see multiple UE Capability Information messages.</li>
+                </ul>
+                <img class="img-fluid" src="/assets/photo_2020-07-19_12-32-43.jpg" />
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-5" title="OnePlus, Oppo and Realme (Qualcomm Only)" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p><i>If you have Mediatek device, please follow Mediatek instruction on Mediatek Devices section</i></p>
+                <ul>
+                    <li> Call to <kbd>*#800#</kbd> from phone app to enter to LogKit</li>
+                    <li>
+                        <ul>
+                            <li>OnePlus Android 9 and older: Go to Advanced -> Get QXDM Log and open device log to start logging.</li>
+                            <li>OnePlus Android 10: Go to QXDM Log section and click star logging icon</li>
+                            <li>Realme Android 10: Go to Cellular Network and Calls -> Start recording </li>
+                        </ul>
+                    </li>
+                    <div class="row">
+                        <div class="col-xs-6" style="max-width:256px">
+                            <img class="img-fluid" src="/assets/photo_2020-06-16_17-48-07.jpg"/>
+                        </div>
+                        <div class="col-xs-6" style="max-width:256px">
+                            <img class="img-fluid" src="/assets/photo_2020-05-11_22-50-49.jpg"/>
+                        </div>
+                    </div>
+                    <li>Switch your device to Airplane Mode, wait few second and turn Airplane mode off. Wait some time to get connected to 4G LTE network.</li> 
+                    <li>Stop logging with stop icon / close device log</li>
+                    <li>Enter to the file manager and find the log file
+                        <ul>
+                            <li>Android 10 and older log file saved to <code>/sdcard/oem_log/XXXX/mdm</code> (XXXX is some generated timestamp value) and file extension is qmdl or qmdl2 (Example filename diag_log_20210324_1353561616586836381.qmdl).</li>
+                            <li>Android 11 and newer log file saved to <code>/sdcard/Android/oem_log</code> (To access directory open AOSP Files app via Android Settings -> Storage -> Files) and log file extension .bin (Example file name: diag_qdss_log_mpss_20210326_1734181616794458624.bin). </li>
+                        </ul>
+                    </li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-6" title="Xiaomi devices (Qualcomm only)" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p><i>If you have Mediatek device, please follow Mediatek instruction on Mediatek Devices section</i></p>
+                <h4>Before 2020 released devices</h4>
+                <p><i>Doesn’t work with Android One devices. This works only with Qualcomm Devices before SD865.</i></p>
+                <ul>
+                    <li>Open Android Settings -> About phone and click Kernel version 5 times. This will open CIT menu</li>
+                    <img class="img-fluid" src="/assets/photo_2019-09-08_13-29-29.jpg" />
+                    <li>On CIT menu open Additional tools on dropdown menu on right top</li>
+                    <li>Go to Modem test tools -> Open/Close Offline Log to open logs</li>
+                    <li>Switch your device to Airplane Mode, wait few second and turn Airplane mode off. Wait some time to get connected to 4G LTE network.</li>
+                    <li>And then go to back and click Open/Close Offline Log to close logs</li>
+                    <li>Enter to the file manager and find the /sdcard/dialog_logs/XXXX/mdm/diag_log file (XXXX is some generated timestamp value). The log file file extension should be qmdl or qmdl2.</li>
+                </ul>
+                <h4> After 2020 released devices</h4>
+                <ul>
+                    <li>Go to Android Settings -> Service & feedback</li>
+                    <li>Open additional menu on right top -> Generate logs</li>
+                    <img class="img-fluid" src="/assets/photo_2021-04-30_17-46-11.jpg" />
+                    <li>Go to "Find Phone, signal and mobile networks" section and press Generate log. </li>
+                    <img class="img-fluid" src="/assets/photo_2021-04-30_17-50-54.jpg" />
+                    <li>Switch your device to Airplane Mode, wait few second and turn Airplane mode off. Wait some time to get connected to 4G LTE network.</li> 
+                    <li>Go back to Logs menu and tap “Finish and upload”. You don't need continue send feedback to Xiaomi, you can close now logs menu.</li>
+                    <img class="img-fluid" src="/assets/photo_2021-04-30_17-57-01.jpg" />
+                    <li>Enter to the file manager and find the /sdcard/dialog_logs/XXXX/mdm/diag_log or /sdcard/dialog_logs/XXXX file (XXXX is some generated timestamp value). The file extension should be on  .bin. If not exist then extension should be qmdl or qmdl2.</li>
+                    <img class="img-fluid" src="/assets/photo_2021-04-30_17-47-54.jpg" />
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-7" title="LG devices (Qualcomm only)" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p><i>If you have Mediatek device, please follow Mediatek instruction on Mediatek Devices section</i></p>
+                <h4> Qualcomm - Old method</h4>
+                <ul>
+                    <li>Call to <kbd>*#546368#*#modelnumber#</kbd>. (Replace model number of your phone model number. You can find model number on Android Settings -> About.</li>
+                    <li>Open Field Test -> LGODM Logging(LGODL).</li>
+                    <li> Click Start to start logging</li>
+                    <li>Switch your device to Airplane Mode, wait few second and turn Airplane mode off. Wait some time to get connected to 4G LTE network.</li>
+                    <li>Click Stop to end logging</li>
+                    <li>Now you should find log File Manager -> lgodm -> logs.</li>
+                </ul>
+                <h4> Qualcomm - New method</h4>
+                <ul>
+                    <li>Dial to <kbd>277634#*#</kbd></li>
+                    <li>Open Log Service -> Modem log to enable modem logging. </li>
+                    <li>Switch your device to Airplane Mode, wait few second and turn Airplane mode off. Wait some time to get connected 4G LTE network. </li>
+                    <li>Disable Modem logging via same menu.</li>
+                    <li>Now you should find log File Manager -> lgodm -> logs.</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-8" title="Nokia devices (Qualcomm only)" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <ul>
+                    <li> Call to <kbd>*#*#3248665#*#*</kbd>.</li>
+                    <li>Go to 4. Modem Conf.(DbgCfgTool Orginal)</li>
+                    <li>Enable diag logging</li>
+                    <li>Switch your device to Airplane Mode, wait few second and turn Airplane mode off. Wait some time to get connected to 4G LTE network.</li>
+                    <li>Stop logging</li>
+                    <li>Copy log to your storage with Copy diag log.</li>
+                    <img class="img-fluid" src="/assets/photo_2019-09-26_19-59-09.jpg" />
+                    <li>Now  you can find log file on  File Manager -> diag_log_xxxx -> log -> diag_log_XXXXXX.qmdl</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-9" title="Samsung Devices" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <h4> Exynos</h4>
+                <p>This method require ShannonDM software on Windows. Please find this program from internet or use Scat.</p>
+                <ul>
+                    <li>Connect phone to your computer with USB</li>
+                    <li>Dial to <kbd>*#0808#</kbd> and enable RNDIS + ACM + DM + ADB and click OK to save settings. Don't reboot your phone.</li>
+                    <li>Open ShannonDM on Windows.</li>
+                    <img class="img-fluid" src="/assets/photo_2020-06-04_18-17-17.jpg" />
+                    <li>Open Preference (blue) and click Auto Detect Modem Interface (red) and Apply settings and OK.</li>
+                    <img class="img-fluid" src="/assets/photo_2020-06-04_18-22-58.jpg" />
+                    <li>Now you can start record with recording button (red). Shannon will ask where to save log file.</li>
+                    <li>Switch your device to Airplane Mode, wait few second and turn Airplane mode off. Wait some time to get connected to 4G LTE network.</li>
+                    <li>Stop logging with same button you started recording. Wait few minutes so Shannon complete writing log file.</li>
+                </ul>
+                <h4> Qualcomm</h4>
+                <p>This method will extract 00028874 and nvitem from 4G-devices and UE Capability Information 4G and 5G devices. Please prefer Scat-logging.</p>
+                <ul>
+                    <li>Dial to <kbd>*#9900#</kbd> and then SysDump menu should open.</li>
+                    <li>Press Run CP based log and then Copy to sdcard (include CP Ramdump).</li>
+                    <li>You should find BandInfoXXX file on Internal Storage: /sdcard/logs/err/bandinfo_XXXX . Also you should find UECapabilityInformation DLF file in same directory.</li>
+                </ul>
+                In 5G-devices the BandInfo file include only Carrier Policy defined combinations. UECapabilityInformation DLF file will include combinations requested by network.
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-10" title="Apple iOS" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p> This logging only works iOS 11+</p>
+                <h3> Start logging</h3>
+                <ul>
+                    <li>Download baseband <a target="_blank" rel="noopener" href="https://developer.apple.com/services-account/download?path=/iOS/iOS_Logs/Baseband.mobileconfig">profile</a> and install on the iOS device. This profile will expire after 21 days.</li>
+                    <li>Restart device</li>
+                    <li>Put your phone to <a target="_blank" rel="noopener" href="https://support.apple.com/en-us/HT204234">Airplane</a> mode on and off. Wait some time your phone connect to network.</li>
+                    <li>Trigger saving log with pressing and release both <kbd>Volume buttons + Side (or Top) button</kbd>. On an iPhone you will feel a short vibration when a sysdiagnose is successfully triggered. </li>
+                    <li>Wait 10min for the log gathering complete.</li>
+                    <li>Connect your device to you computer and then <a target="_blank" rel="noopener" href="https://support.apple.com/en-us/HT210612">iTunes</a> should copy log files automatically to your computer.</li>
+                </ul>
+                <h4> Log locations</h4>
+                <p> Now you can find the saved log file in AppData on Windows or Libraries on macOS, here <a target="_blank" rel="noopener" href="https://help.ableton.com/hc/en-us/articles/209070509-How-to-access-hidden-folders">instructions</a> to access hidden folders.</p>
+                <h5> macOS</h5>
+                <p><code>~/Library/Logs/CrashReporter/MobileDevice/[Your_Device_Name]/Baseband/</code>
+                <br /> In this directory you should find qmdl log file. The log files are splitted to multiple 1MB files. If you have iPhone 12/12 Pro/12 Pro max the log file is in new qdss format and log file extension is .bin. </p>
+                <h5>Windows</h5>
+                <p><code>%AppData%\Apple Computer\Logs\CrashReporter\MobileDevice\[Your_Device_Name]\Baseband\</code>
+                <br /> In this directory you should find qmdl log file. The log files are splitted to multiple 1MB files. If you have iPhone 12/12 Pro/12 Pro max the log file is in new qdss format and log file extension is .bin. 
+                </p>
+                <h4> Stop logging</h4>
+                <p> To stop logging you have to remove baseband profile from your device.</p>
+                <ul>
+                    <li>Open Settings</li>
+                    <li>Go to General -> Profiles</li>
+                    <li>Tap Remove and enter passcode if asked</li>
+                    <li>Restart the device</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-11" title="Mediatek Devices" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p><i>Tested with LG Velvet 5G and Realme 7 5G</i></p>
+                <p> You may have to enable <a target="_blank" rel="noopener" href="https://developer.android.com/studio/debug/dev-options#enable">Developer options</a>.</p>
+                <ul>
+                    <li>Call to <kbd>*#*#3646633#*#*</kbd> with stock dialer (You may have to uninstall any other 3rd party dialers if this doesn't work). On some devices shortcode doesn't work so you can launch with with <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=de.szalkowski.activitylauncher">Activity Launcher </a> and open activity DebugLoggerUI.</li>
+                    <li>When EngineerMode opens, scroll to the right to "Log and Debugging"</li>
+                    <li>Select DebugLoggerUI</li>
+                    <li>Press the Play button next to "ModemLog stopped"</li>
+                    <li>Toggle Airplane Mode on</li>
+                    <li>Wait 5-10 seconds then toggle Airplane Mode off</li>
+                    <li>Wait ~30 seconds then open DebugLoggerUI again and press the red Stop button</li>
+                    <li>Browse to internal storage -> debuglogger -> mdlog</li>
+                    <li>Compress the newest folder (ex: MDLog1_2020_1211_161842) and share it with us.</li>
+                    <img class="img-fluid" src="/assets/photo_2020-12-12_00-59-51.jpg" />
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-12" title="Airscreen" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p><i>This method require <a target="_blank" rel="noopener" href="https://www.qtrun.com/en/?page_id=36">Airscreen</a> program. Airscreen works with Qualcomm and Huawei HiSilicon devices. </i></p>
+                <h4> Enable diag </h4>
+                <p>Connect your phone to your computer with USB and enable with these methods:</p>
+                <h5>Non-root methods</h5>
+                <p>Some devices allow enable USB-diag without root:</p>
+                <ul>
+                    <li>Samsung devices can enable diag calling <kbd>*#0808#</kbd> and then enable DM + RMNET + MODEM (Qualcomm) or RNDIS + ACM + DM + ADB (Exynos). Certain version of firmwares after 2018 blocking the access to hidden menu with code. No solution then without root.</li>
+                    <li>OnePlus, Realme and Oppo devices: Enable diag calling <kbd>*#8011#</kbd>. To disable, disable/enable USB Debugging in Developers Menu.</li>
+                    <li>Alcatel/TLC devices can enable diag call to <kbd>###2324#</kbd> until device promts Diag Protector OFF. </li>
+                    <li>Blackberry devices can enable diag calling to <kbd>*#46368676#*#*</kbd> to enter to Testing-menu and enable RMNET.</li>
+                </ul>
+                <h5>Root required methods</h5>
+                <p>These methods should work almost every rooted Android Qualcomm-devices</p>
+                <ul>
+                    <li>Install <a target="_blank" rel="noopener" href="https://developer.android.com/studio/releases/platform-tools">adb tools</a></li>
+                    <li>Open terminal or Powershell and run command <kbd>adb shell</kbd></li>
+                    <li>Run <code>su</code> to run super user priviledge command</li>
+                    <li>Then run command in adb shell:
+                        <ul>
+                            <li>If you have SDX24 or older: <code>setprop sys.usb.config diag</code></li>
+                            <li>If you have SDX50 or SDX55: <code>sys.usb.config diag,diag_mdm,qdss,qdss_mdm,serial_cdev,dpl,rmnet,adb</code></li>
+                            <li>If you have SDX60: <code>setprop sys.usb.ffs.ready 1; setprop sys.usb.configfs 1; setprop sys.usb.config diag,adb</code></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h4>Connect phone to Airscreen and start testing</h4>
+                <ul>
+                    <li>Open Test menu -> Devices</li>
+                    <img class="img-fluid" src="/assets/photo_2021-02-21_20-07-15.jpg" />
+                    <li>On Devices add new device with (+)</li>
+                    <li>Select under Configuration the device interface. It should be named as Qualcomm something...</li>
+                    <img class="img-fluid" src="/assets/photo_2021-02-21_20-07-21.jpg" />
+                    <li>Start testing on Test menu -> Connect</li>
+                    <li>Open then in Forms (1. orange) from left side and then scroll down bottom (2. red) to Signaling to see signaling data. Turn Airplane on and Off to see UE Capability Information message (3. blue) </li> 
+                    <img class="img-fluid" src="/assets/photo_2021-02-21_20-07-26.jpg" />
+                    <li>To end testing, open Test menu -> Connect again to stop.</li>
+                    <li>You can save log to pcap file example via Tools -> Log Utility -> Export PCAP so you can open log file with <a target="_blank" rel="noopener" href="https://www.wireshark.org/">Wireshark</a></li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+    <br />
+    <h2> 2. Send UE Capability message or log file to us </h2>
+    <p> To help us to build even better 4G and 5G Combination page, please send your device modem logs, UE Capability
+        Information message or other log file to improve our website. Don't share screenshots from applications like NetMonster because we can't use this data format. Alternatively, you may send send via email: <a
+            href="mailto:combos@cacombos.com"> combos@cacombos.com </a>. Please include same details as shown in the form below.
+    </p>
+    <form method="POST" enctype="multipart/form-data" #ContributeForm="ngForm" (submit)="submitForm()">
+        <div class="form-group">
+            <label for="email"> Email address (optional)</label>
+            <input type="email" class="form-control" name="email" id="email" [disabled]="!isBrowser" [class.is-invalid]="formData.email.length != 0 && !emailIsValid(formData.email)" [class.is-valid]="formData.email.length != 0 && emailIsValid(formData.email)" [(ngModel)]="formData.email"
+                aria-describedby="emailHelp" placeholder="Enter email">
+            <div class="invalid-feedback">Please use email format username@example.org</div>
+            <small id="emailHelp" class="form-text text-muted">We only use your email to notify when combos are available at
+                cacombos.com page or for further communications and we will notify you when combinations are available
+                in website. We don't share email address to third party.</small>
+        </div>
+        <div class="form-row">
+            <div class="col-md">
+                <label for="manufacturer"> Manufacturer and Model Name </label>
+                <input type="text" class="form-control" id="manufacturer" name="manufacturer" [class.is-valid]="formData.manufacturer.length != 0" [disabled]="!isBrowser"
+                    [(ngModel)]="formData.manufacturer" placeholder="eg. OnePlus 8" required>
+                    <div class="invalid-feedback">Please provide your device manufacturer and model name</div>
+            </div>
+            <div class="col-md">
+                <label for="model"> Model Number <button type="button" class="tooltip-button"
+                        ngbTooltip="How to check model number of devices? On Android, you can check model number on Android Settings -> About" triggers="click:blur">
+                        <fa-icon [icon]="faquestioncircle"></fa-icon>
+                </button> </label>
+                <input type="text" class="form-control" id="model" name="model" [class.is-valid]="formData.model.length != 0" [disabled]="!isBrowser"
+                    [(ngModel)]="formData.model" aria-describedby="modelHelp" placeholder="eg. IN2013" required>
+                <div class="invalid-feedback">Please provide your device model number</div>
+            </div>
+            <div class="col-md">
+                <label for="provider"> Provider and Country </label>
+                <input type="text" class="form-control" id="provider" name="provider" [class.is-valid]="formData.provider.length != 0" [disabled]="!isBrowser"
+                    [(ngModel)]="formData.provider" placeholder="eg. EE UK" required>
+                <div class="invalid-feedback">Please provide your devices connected provider name and your country</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="logfile">Log file</label>
+            <input type="file" name="logfile" class="form-control" [disabled]="!isBrowser" [class.is-valid]="formData.message.length != 0 || fileToUpload != null"
+                (change)="handleFileInput($event.target.files)" id="logfile" aria-describedby="fileHelp">
+            <small id="fileHelp" class="form-text text-muted">Max file size is 50MB. If your file is larger than limit,
+                please use eg. <a target="_blank" rel="noopener" href="https://wetransfer.com/"> WeTransfer </a> or <a
+                    target="_blank" rel="noopener" href="https://www.dropbox.com/transfer"> Dropbox Transfer </a> to
+                send us file - just put then link to message field.</small>
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" name="message" [disabled]="!isBrowser" [class.is-valid]="formData.message.length != 0 || fileToUpload != null"
+                [(ngModel)]="formData.message" rows="4"></textarea>
+            <div class="invalid-feedback">Please give a log file on attachment or paste to the message field the log message.</div>
+            <small id="fileHelp" class="form-text text-muted">Write everything you think could be usefull to give more
+                context to this log file, for example you have any changes to your device, example disabled/enabled
+                bands.</small>
+        </div>
+        <div class="form-group" *ngIf="isBrowser">
+            <ng-hcaptcha name="captcha" [(ngModel)]="formData.captcha"></ng-hcaptcha>
+        </div>
+        <button [disabled]="submitDisabled || !isBrowser || !ContributeForm.form.valid || (formData.message.length == 0 && fileToUpload == null)" type="submit" name="submit"
+            class="btn btn-primary">Submit</button>
+    </form>
+    <br />
+    <ng-container *ngIf="error != null">
+        <ngb-alert type="danger" [dismissible]="false">
+            <strong>ERROR!</strong> failed send message. Please contact via email combos@cacombos.com
+        </ngb-alert>
+    </ng-container>
+    <div *ngIf="contributeResults != null">
+        <div class="alert alert-success" role="alert" *ngIf="contributeResults.status == true">Thank you for
+            contribution. We will check this as soon as possible and add combos to website.</div>
+        <div class="alert alert-danger" role="alert" *ngIf="contributeResults.status == false">
+            <div *ngFor="let message of contributeResults.message">{{message}}</div>
+        </div>
+    </div>
+</div>

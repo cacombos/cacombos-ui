@@ -1,0 +1,199 @@
+<ng-container *ngIf="error != null">
+    <ngb-alert type="danger" [dismissible]="false">
+        <strong>ERROR!</strong> failed fetch data. Please reload site.
+    </ngb-alert>
+</ng-container>
+<div class="loader" *ngIf="error == null && comboloaded == false || error == null && deviceloaded == false">
+    <div class="app-loading">
+        <strong>Loading...</strong>
+        <div class="spinner-border" style="width: 4rem; height: 4rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="deviceloaded == true && comboloaded == true">
+    <h1> <span *ngIf="device != null">{{device.name}}</span> ({{this.deviceName}}) 4G<ng-container *ngIf="device != null && device.nr_nsa == true">/5G</ng-container> Bands and Combos </h1>
+    <table class="table w-auto" *ngIf="device != null">
+        <tbody>    
+           <tr>
+                <th colspan="2"> Modem Specification </th>
+            </tr>
+            <ng-container *ngIf="device.modem != '' && device.modem != null">
+                <tr>
+                    <td> Modem Model</td>
+                    <td> <a href="/search?key={{device.modem}}"> {{device.modem}} </a></td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="device.firmware != '' && device.firmware != null">
+                    <tr>
+                        <td> Firmware Version </td>
+                        <td> {{device.firmware}}</td>
+                    </tr>
+                </ng-container>
+            <ng-container *ngIf="device.release_year != ''&& device.release_year != null">
+                <tr>
+                    <td> Release Year </td>
+                    <td> {{device.release_year}} </td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="device.lte_dl_modulation != null">
+                <tr>
+                    <td> LTE DL/UL Modulation</td>
+                    <td>{{device.lte_dl_modulation}}QAM <ng-container *ngIf="device.lte_ul_modulation != null">/ {{device.lte_ul_modulation}}QAM</ng-container></td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="device.nr_dl_modulation != ''&& device.nr_dl_modulation != null">
+                <tr>
+                    <td> NR DL/UL Modulation</td>
+                    <td>{{device.nr_dl_modulation}}QAM <ng-container *ngIf="device.nr_ul_modulation != ''&& device.nr_ul_modulation != null">/ {{device.nr_ul_modulation}}QAM</ng-container></td>
+                </tr>
+            </ng-container>
+            <!-- List LTE and NR Bands -->
+            <ng-container *ngIf="combos != null && combos.bands != null">
+                <ng-container *ngIf="combos.bands.lte != null">
+                    <tr>
+                        <td> LTE Bands</td>
+                        <td> {{combos.bands.lte.join(", ")}}</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="combos.bands.lte_4t4r != null">
+                    <tr>
+                        <td> LTE 4x4 Bands</td>
+                        <td> {{combos.bands.lte_4t4r.join(", ")}}</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="device.lte_dl_category != null">
+                    <tr>
+                        <td> LTE Category (DL<ng-container *ngIf="device.lte_ul_category != null">/UL</ng-container>) <button type="button" class="tooltip-button" ngbTooltip="LTE Category defines uplink and downlink radio throughput capability." triggers="click:blur"> <fa-icon [icon]="faquestioncircle"></fa-icon></button></td>
+                        <td>{{device.lte_dl_category}} <ng-container *ngIf="device.lte_ul_category != null">/ {{device.lte_ul_category}}</ng-container></td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="device.lte_dl_category != null">
+                    <tr>
+                        <td> LTE Max Speed (DL<ng-container *ngIf="device.lte_ul_speed != null">/UL</ng-container>) <button type="button" class="tooltip-button" ngbTooltip="Real maximum speed depends used ca combination, bandwidth and network configuration. You can use 4G Speedtest calculator (on site navigation bar) to calculate theoric max speed with band combinations." triggers="click:blur"> <fa-icon [icon]="faquestioncircle"></fa-icon></button></td>
+                        <td> {{device.lte_dl_speed}} <ng-container *ngIf="device.lte_ul_speed != null">/ {{device.lte_ul_speed}} </ng-container> Mbps</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="combos.bands.nr_nsa != null">
+                    <tr>
+                        <td>NR NSA Bands</td>
+                        <td> {{combos.bands.nr_nsa.join(", ")}}</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="combos.bands.nr_sa != null">
+                    <tr>
+                        <td>NR SA Bands</td>
+                        <td>{{combos.bands.nr_sa.join(", ")}}</td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+
+        </tbody>
+    </table>
+    <div class="row">
+        <form class="form-inline toolbar-form" role="form">
+            <div class="form-group toolbar">
+                <label for="select-combos" style="margin-right: 10px;">Select Country / Provider&nbsp;<button type="button" class="tooltip-button" style="padding: 2px;" ngbTooltip="All Combined: Combined list all devices combolists. Default: Default combolist of this device. This will be used if there is no country/provider specific combolist. Hardware: All combos supported by hardware. Normally this will not be used if there is country/provider specific combolist." triggers="click:blur"> <fa-icon [icon]="faquestioncircle"></fa-icon></button></label>&nbsp;
+                <select id="select-combolist" name="CombolistSelection" [ngModel]="CombolistSelection" class="form-control" [disabled]="!isBrowser" (ngModelChange)="changeCombolist($event)">
+                    <option value="allcombined">All Combined</option>
+                    <option value="{{combolist.combolist}}" *ngFor="let combolist of combolists">{{combolist.frendly_name}} <!-- <ng-container *ngIf="combolist.plmns != null">- {{combolist.plmns}}</ng-container> --></option>
+                </select>
+            </div>
+            <!-- <div class="form-group toolbar">
+                <ngx-bootstrap-multiselect [options]="bands" [settings]="bandfilterSettings" [texts]="bandfilterTexts" name="BandFilterSelection" [ngModel]="BandFilterSelection" (ngModelChange)="filterBands($event)">
+                </ngx-bootstrap-multiselect>
+            </div> -->
+        </form>
+    </div>
+    <div style="margin-top: 10px"> </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" style="cursor:pointer;" mat-sort-header="dl_ca" (click)="toggleSort('dl_ca')">
+                        DL Band/CA<ng-container *ngIf="combos != null && combos.bands != null && combos.bands.nr_nsa != null">/EN_DC</ng-container>&nbsp;
+                        <ng-container *ngIf="this.sort.active=='dl_ca' && this.sort.direction=='asc'"><fa-icon [icon]="fanarrowup"></fa-icon></ng-container>
+                        <ng-container *ngIf="this.sort.active=='dl_ca' && this.sort.direction=='desc'"><fa-icon [icon]="fanarrowdown"></fa-icon></ng-container>
+                    </th>
+                    <th scope="col" style="cursor:pointer;" mat-sort-header="dl_streams" (click)="toggleSort('dl_streams')">
+                        DL MIMO (Streams)
+                        <ng-container *ngIf="this.sort.active=='dl_streams' && this.sort.direction=='asc'"><fa-icon [icon]="fanarrowup"></fa-icon></ng-container>
+                        <ng-container *ngIf="this.sort.active=='dl_streams' && this.sort.direction=='desc'"><fa-icon [icon]="fanarrowdown"></fa-icon></ng-container>
+                    </th>
+                    <th scope="col" style="cursor:pointer;" mat-sort-header="ul_band" (click)="toggleSort('ul_band')">
+                        UL Band<ng-container *ngIf="device.lte_dl_category > 6">/CA</ng-container> <ng-container *ngIf="device.nr_nsa == true"> (MIMO Streams) </ng-container>
+                        <ng-container *ngIf="this.sort.active=='ul_band' && this.sort.direction=='asc'"><fa-icon [icon]="fanarrowup"></fa-icon></ng-container>
+                        <ng-container *ngIf="this.sort.active=='ul_band' && this.sort.direction=='desc'"><fa-icon [icon]="fanarrowdown"></fa-icon></ng-container>
+                    </th>
+                    <!-- <ng-container *ngIf="combos != null && combos.bands != null && combos.bands.nr_nsa != null">
+                        <th> UL MIMO </th>
+                    </ng-container> -->
+                </tr>
+                <tr>
+                    <td><input [disabled]="!isBrowser" type="text" class="form-control" placeholder="Filter DL Band/CA" [(ngModel)]="searchDLCA" (ngModelChange)="updateFilteredCombos()" /></td>
+                    <td><input [disabled]="!isBrowser" type="text" class="form-control" placeholder="Filter MIMO" [(ngModel)]="searchDLMIMO" (ngModelChange)="updateFilteredCombos()"/></td>
+                    <td><input [disabled]="!isBrowser" type="text" class="form-control" placeholder="Filter UL Band" [(ngModel)]="searchULBand" (ngModelChange)="updateFilteredCombos()" /></td>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="combos != null">
+                    <tr *ngFor="let combo of filteredCombos">
+                        <td>{{combo.dl_ca}}</td>
+                        <td>{{combo.dl_mimo}} <strong>({{combo.dl_streams}})</strong></td>
+                        <td>{{combo.ul_band}} <ng-container *ngIf="combo.ul_streams != '0'"> ({{combo.ul_streams}}) </ng-container></td>
+                        <!-- <ng-container *ngIf="combos != null && combos.bands != null && combos.bands.nr_nsa != null">
+                            <td>{{combo.ul_streams}}</td>
+                        </ng-container> -->
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+        <ng-container *ngIf="combos != null">
+            <p>Combinations on the table: {{filteredCombos ? filteredCombos.length : ''}}</p>
+        </ng-container>
+        <ng-container *ngIf="device.notes != '' && device.notes != null || combos.notes != null && combos.notes != ''">
+        <p>Notes:
+            <ng-container *ngIf="device.notes != '' && device.notes != null">
+                {{device.notes}}
+            </ng-container>
+            <ng-container *ngIf="combos.notes != '' && combos.notes != null">
+                {{combos.notes}}
+            </ng-container>
+        </p>              
+        </ng-container>
+        <ng-container *ngIf="combos.source != null">
+            Source: &nbsp;<span class="badge badge-secondary">{{combos.source}}</span>
+        </ng-container>
+    </div>
+    <h3> Explanations of markings </h3>
+    <p> Band Numbers present different frequency, here list of <a rel="noopener" target="_blank" href="https://www.sqimway.com/lte_band.php"> LTE Bands </a> and <a rel="noopener" target="_blank" href="https://www.sqimway.com/nr_band.php"> NR Bands </a>. Character after number is Bandwith Class mark. Full explanation in <a title="Carrier Aggregation explained" rel="noopener" target="_blank" href="https://www.3gpp.org/technologies/keywords-acronyms/101-carrier-aggregation-explained"> 3gpp.org </a></p>
+    <table class="table table-sm w-auto">
+    <caption>LTE CA Bandwidth Class</caption>
+        <thead>
+            <tr>
+                <td> Class </td><td>MHz </td> <td> Max number of CC <button type="button" class="tooltip-button" ngbTooltip="Component Carrier" triggers="click:blur"> <fa-icon [icon]="faquestioncircle"></fa-icon></button></td><td> Example</td>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>A</td><td>20</td><td>1</td><td>3A or 3</td>
+        </tr>
+        <tr>
+            <td>B</td><td>20</td><td>2</td><td>3B</td>
+        </tr>
+        <tr>
+            <td>C</td><td>40</td><td>2</td><td>3C</td>
+        </tr>
+        <tr>
+            <td>D</td><td>60</td><td>3</td><td>3D</td>
+        </tr>
+        <tr>
+            <td>E</td><td>80</td><td>4</td><td>3E</td>
+        </tr>
+        <tr>
+            <td>F</td><td>100</td><td>5</td><td>3F</td>
+        </tr>
+        </tbody>
+    </table>
+    <p> We can't guarantee that the information on this page is 100% correct. The main source are the <a rel="noopener" target="_blank" href="https://www.sharetechnote.com/html/Handbook_LTE_RRC_IE_UE_Capability.html"> UE Capability Information</a> -message, 0xB0CD and 0xB826. You can contribute by send your device UE Capability Information to <a routerLink="/contribute"> us </a>.  </p>
+</div>

@@ -1,0 +1,183 @@
+/* You can add global styles to this file, and also import other style files */
+
+fa-icon svg {
+    width: 1em;
+    height: 1em;
+}
+
+.loader-ieonly {
+    display: none;
+  }
+
+  @media screen and (-ms-high-contrast: active),
+  (-ms-high-contrast: none) {
+    .loader-ieonly {
+      display: block;
+    }
+
+    .svg-inline--fa {
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+.highlight {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  margin-bottom:0;
+}
+
+.devices-card {
+    width: 100%;
+}
+
+.toolbar {
+    margin: 10px;
+}
+
+.toolbar-form {
+    display: block;
+    width: 100%;
+}
+
+.toolbar-checkbox {
+    margin-left: 40px;
+}
+
+.changeViewButton {
+    max-height:30px;
+}
+
+.alert-status {
+    margin-bottom: 0;
+}
+
+.consent-alert {
+    float:left;
+    position: fixed;
+    bottom:0;
+    z-index:999;
+}
+
+@media (min-width: 576px ) {
+    .devices-card {
+        width: 50%;
+    }
+    .toolbar {
+        margin: 5px;
+    }
+    .toolbar-form {
+        display: flex;
+    }
+}
+
+@media (min-width: 768px) {
+    .devices-card {
+        width: 33%;
+    }
+}
+
+@media (min-width: 1280px) {
+    .devices-card {
+        width: 25%;
+    }
+    .container-fluid {
+        min-height:50vh;
+    }
+}
+
+@media (min-width: 2000px) {
+    .devices-card {
+        width: 20%;
+    }
+}
+
+@media (min-width: 3000px) {
+    .devices-card {
+        width: 10%;
+    }
+}
+
+.loader {
+    background:white;
+    height: 100%;
+}
+
+.app-loading {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-top: 100px;
+}
+
+.body-container {
+  margin-bottom: 100px;
+}
+
+.tooltip-button {
+    background-color: transparent;
+    border: 0;
+}
+
+.matomo-iframe-light {
+    display: block;
+}
+.matomo-iframe-dark {
+    display: none;
+}
+
+/*
+Dark Theme
+*/
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #222;
+        color: #FAFAFA;
+    }
+    .loader {
+        background:#222;
+    }
+    a, .btn-link {
+        color: #60a0e6;
+    }
+    a:hover, .btn-link:hover {
+        color: #386494;
+    }
+    .jumbotron {
+        background-color: #303030;
+        color: #FAFAFA;
+    }
+    .table {
+        background-color: #303030;
+        color: #FAFAFA;
+    }
+    caption {
+        color:#dad5d5;
+    }
+    .card {
+        background-color: #303030;
+    }
+    footer {
+        background-color: #303030 !important;
+    }
+    .text-muted {
+        color: #dad5d5!important
+    }
+    .badge-info {
+        background-color: #3498db;
+        color: #FAFAFA;
+    }
+    .matomo-iframe-light {
+        display: none;
+    }
+    .matomo-iframe-dark {
+        display: block;
+    }
+    .tooltip-button {
+        color:#FAFAFA;
+    }
+}

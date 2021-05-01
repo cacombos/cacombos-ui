@@ -1,0 +1,14 @@
+version: '2.4'
+services:
+  cacombos-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+    - 4200:4200
+    volumes:
+    - .:/usr/src/app
+    - cacombos-ui_node_modules:/usr/src/app/node_modules
+
+volumes:
+  cacombos-ui_node_modules:

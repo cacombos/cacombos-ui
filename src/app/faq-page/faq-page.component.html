@@ -1,0 +1,88 @@
+<div class="container">
+    <h1> FAQ </h1>
+    <p> Here are some common questions and their answers about the 4G/5G Bands and Combos website and its data.</p>
+    <h2> What is the 4G/5G Bands and Combos website and why does it exist? </h2>
+    <p> Most mobile device and modem vendors don’t list the combinations that they support for 4G and 5G Carrier Aggregation (CA) on their devices’ techncial specifications. Most vendors only show a simple Category number for 4G/LTE and which individual bands a device supports. Additionally, most devices have a ‘Carrier Policy’ which limits the bands and combinations supported at a carrier level. This is why the 4G/5G Combos website exists, to show this data based on logs from the modems on devices.
+    <br />
+    <br /> You can follow us on <a target="_blank" rel="noopener" href="https://twitter.com/cacombos">Twitter</a> to get notification when new device added to our site. 
+    </p>
+    <h2> How to you get this CA combo data? What is your source of data? </h2>
+    <p>Our main source is from logs contributed by our contributors. You can find instructions on how to contribute on the <a href="/contribute">contribute</a> page.</p>
+    <p>We accept these formats:</p>
+    <ul>
+        <li><a target="_blank" rel="noopener" href="https://www.sharetechnote.com/html/Handbook_LTE_RRC_IE_UE_Capability.html">UE Capability Information Message</a> (eutra, eutra-nr, nr)
+            <ul>
+                <li>Network Signal Guru -format</li>
+                <li>Wireshark UE Capability Information -format</li>
+                <li>Cellular Pro UE Capability Information -format</li>
+                <li>UE Capability Information message in hexdump (prefered)</li>
+            </ul>
+        </li>
+        <li>Qualcomm: 0xB0CD LTE RRC Supported CA Combos</li>
+        <li>Qualcomm: 0xB826 NR5G RRC Supported CA Combos</li>
+        <li>Mediatek: PRE_CA_COMB_INFO -messsage </li>
+    </ul>
+    <h2> What is Carrier Aggregation (CA)? </h2>
+    <p>In 3GPP site have good <a target="_blank" rel="noopener" href="https://www.3gpp.org/technologies/keywords-acronyms/101-carrier-aggregation-explained">explanation</a> about Carrier Aggregation and here all <a target="_blank" rel="noopener" href="https://www.sqimway.com/lte_ca_band.php"> 4G combinations</a> listed from standards.</p>
+    <h2> What is Dual Connectivity (EN-DC)? </h2>
+    <p> Dual Connectivity is similar like Carrier Aggregation but between 4G and 5G. This used in current 5G NSA (<a target="_blank" rel="noopener" href="https://www.ericsson.com/en/blog/2019/7/standalone-and-non-standalone-5g-nr-two-5g-tracks">Non-Standalone</a>)-network. More information about Dual Connectivity <a target="_blank" rel="noopener" href="https://www.rcrwireless.com/20190529/network-infrastructure/lte/what-is-endc"> here</a>. Here is list of <a target="_blank" rel="noopener" href="https://www.sqimway.com/nr_endc.php"> combinations</a> from standard.</p>
+    <h2> What is UE Category? </h2>
+    <p> LTE UE Category defines maximum throughput for clients (UE). Here is good table of <a target="_blank" rel="noopener" href="https://www.sqimway.com/ue_category.php"> UE Categories </a>.  </p>
+    <h2>Why devices have different CA Combinations per network?</h2>
+    <p>Most devices enable and disable modem features such as CA Combos and bands on a per network basis. This is a good thing, as only having useful combinations enabled makes the connection to the network faster and limits the size of the UE Capability Information message. There are limitations as to how big the UE Capability Information messages can be. More details about the UE Capability Information message can be found on the <a target="_blank" rel="noopener" href="https://www.sharetechnote.com/html/Handbook_LTE_UE_Capability.html">ShareTechnote</a> website.
+    <br>
+    <br>On cacombos.com we list the combinations for each device in multiple combolists, depending on what information is available for a specific device and how specific the combinations have been defined. These combolists are: hardware, default, region, country, provider. For a further explanation see below.
+    </p>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <th>Combolist</th><th>Source</th><th>Explanation</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>All Combined</td>
+                    <td></td>
+                    <td>Combined combination list, listed below</td>
+                </tr>
+                <tr>
+                    <td>Hardware</td>
+                    <td>
+                        <ul>
+                            <li>0xB0CD LTE RRC Supported CA Combos</li>
+                            <li>0xB826 NR5G RRC Supported CA Combos</li>
+                            <li>00028874 (legacy devices)</li>
+                            <li>PRE_CA_COMB_INFO</li>
+                        </ul>
+                    </td>
+                    <td>Carrier Aggregation combinations defined to modem nvitems.</td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>UE Capability Information message</td>
+                    <td>If this is only available or with hardware combinations, <br>device doesn't have Carrier Policy limiting combinations so this list apply to every networks. <br>Example devices are Motorola, Xiaomi, ZTE phones.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Region (eg. Europe)</li>
+                            <li>Country (eg. UK)</li>
+                            <li>Provider (eg. EE)</li>
+                        </ul>
+                    </td>
+                    <td>
+                        UE Capability Information message
+                    </td>
+                    <td>
+                        We use Carrier Policy files to help to put combinations to correct group.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h2> How devices show when 4G Carrier Aggregation is active? </h2>
+    <p> Devices may show this with 4G+ or LTE+ icon. Not every devices show special icon when 4G Carrier Aggregation is active. Some devices also have bug to show 4G+/LTE+ icon even not Aggrigate with other bands. </p>
+    <h2> Is there any app show 4G Carrier Aggregation details? </h2>
+    <p> There is few apps for Android show 4G Carrier Aggregation properly. Example <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.qtrun.QuickTest&hl=en"> Network Signal Guru </a> for Qualcomm Android devices (Root required). Also for Samsung there is Service Mode (Dial to *#0011#). </p>
+    <h2> Site have wrong data! </h2>
+    <p> Please help us to fix inaccurate/correct info by contacting us <a href="mailto:combos@cacombos.com"> combos@cacombos.com </a> </p>
+</div>
