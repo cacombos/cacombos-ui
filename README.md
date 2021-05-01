@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Environments
 
 * Production https://cacombos.com
-* Stage https://stage.caocmbos.com
+* Stage https://stage.cacombos.com
 
 ## Build & Deploy to production
 
