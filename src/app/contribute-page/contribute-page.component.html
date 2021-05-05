@@ -439,6 +439,7 @@ cd scat</pre>
         <div class="form-group" *ngIf="isBrowser">
             <ng-hcaptcha name="captcha" [(ngModel)]="formData.captcha"></ng-hcaptcha>
         </div>
+        <p>By submit I agree <a target="_blank" routerLink="/terms">terms</a> and <a target="_blank" routerLink="/privacy">privacy policy</a>.</p><br />
         <button [disabled]="submitDisabled || !isBrowser || !ContributeForm.form.valid || (formData.message.length == 0 && fileToUpload == null)" type="submit" name="submit"
             class="btn btn-primary">Submit</button>
     </form>
