@@ -46,7 +46,7 @@ $ unzip Diag.zip</pre>
                 <p>Install some packages from package manager and clone forked scat from Github</p>
                 <figure class="highlight">
                     <pre>sudo apt-get install git python3-usb python3-serial
-git clone https://github.com/HandyMenny/scat
+git clone https://github.com/fgsect/scat
 cd scat</pre>
                 </figure>
                 <h4> Install to MacOS</h4>
@@ -57,7 +57,7 @@ python3 get-pip.py
 python3 -m pip install pysub
 python3 -m pip install pyserial
 python3 -m pip install libusb
-git clone https://github.com/HandyMenny/scat
+git clone https://github.com/fgsect/scat
 cd scat</pre>
                 </figure>
                 <h4> Install to Windows</h4>
@@ -70,7 +70,7 @@ cd scat</pre>
                     <pre>cd C:
 pip3 install pyusb
 pip3 install pyserial
-git clone https://github.com/HandyMenny/scat
+git clone https://github.com/fgsect/scat
 cd scat</pre>
                 </figure>
                 <h4> Enable diag </h4>
@@ -93,7 +93,7 @@ cd scat</pre>
                         <ul>
                             <li>If you have SDX24 or older: <code>setprop sys.usb.config diag</code></li>
                             <li>If you have SDX50 or SDX55: <code>sys.usb.config diag,diag_mdm,qdss,qdss_mdm,serial_cdev,dpl,rmnet,adb</code></li>
-                            <li>If you have SDX60: <code>setprop sys.usb.ffs.ready 1; setprop sys.usb.configfs 1; setprop sys.usb.config diag,adb</code></li>
+                            <li>If you have SDX60: <code>setprop sys.usb.ffs.ready 1; setprop sys.usb.configfs 1; setprop sys.usb.config diag,adb,diag_mdm</code></li>
                         </ul>
                     </li>
                 </ul>
@@ -123,7 +123,7 @@ cd scat</pre>
                     <li> Click next to install driver to your computer. You can see installed driver in Device Manager</li>
                 </ul>
                 <h4> Run Scat</h4>
-                <p>Then use scat to record modem data to qmdl and pcap file. Use <kbd>lsusb</kbd> command on Linux/MacOS to set device address parameter, example <kbd>-a 001:010</kbd>. The first part before colon (:) is Bus, what is normally 001, or 002 and then second part after colon is USB device id. Check other parameters in scat <a target="_blank" rel="noopener" href="https://github.com/HandyMenny/scat">README.md</a> file.</p>
+                <p>Then use scat to record modem data to qmdl and pcap file. Use <kbd>lsusb</kbd> command on Linux/MacOS to set device address parameter, example <kbd>-a 001:010</kbd>. The first part before colon (:) is Bus, what is normally 001, or 002 and then second part after colon is USB device id. Check other parameters in scat <a target="_blank" rel="noopener" href="https://github.com/fgsect/scat">README.md</a> file.</p>
                 <p> For Qualcomm devices:</p>
                 <figure class="highlight">
                     <pre>python3 ./scat.py -t qc -u -a 000:255 -i 0 --qmdl output.qmdl -F sim1.pcap</pre>
@@ -359,7 +359,7 @@ cd scat</pre>
                         <ul>
                             <li>If you have SDX24 or older: <code>setprop sys.usb.config diag</code></li>
                             <li>If you have SDX50 or SDX55: <code>sys.usb.config diag,diag_mdm,qdss,qdss_mdm,serial_cdev,dpl,rmnet,adb</code></li>
-                            <li>If you have SDX60: <code>setprop sys.usb.ffs.ready 1; setprop sys.usb.configfs 1; setprop sys.usb.config diag,adb</code></li>
+                            <li>If you have SDX60: <code>setprop sys.usb.ffs.ready 1; setprop sys.usb.configfs 1; setprop sys.usb.config diag,adb,diag_mdm</code></li>
                         </ul>
                     </li>
                 </ul>
