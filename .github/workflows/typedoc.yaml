@@ -7,18 +7,16 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - Name: Checkout
+      uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
         node-version: '14'
-    - run: yarn
-    - run: npx typedoc src/app/
-    - uses: cpina/github-action-push-to-another-repository@v1.3
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+    - run: |
+      yarn
+      npx typedoc src/app/
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
-        source-directory: 'docs'
-        destination-repository-username: 'cacombos'
-        destination-repository-name: 'cacombos-ui-docs'
-        user-email: combos@cacombos.com
-        target-branch: main
+        branch: gh-pages
+        folder: docs
