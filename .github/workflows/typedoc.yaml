@@ -13,8 +13,8 @@ jobs:
       with:
         node-version: '14'
     - run: |
-      yarn
-      npx typedoc src/app/
+        yarn
+        npx typedoc src/app/
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
