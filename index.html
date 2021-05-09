@@ -1,0 +1,261 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>4G/5G Bands &amp; Combos Documentation</title>
+	<meta name="description" content="Documentation for 4G/5G Bands &amp; Combos Documentation">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">4G/5G Bands &amp; Combos Documentation</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>4G/5G Bands &amp; Combos Documentation</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#4g5g-bands-amp-combos-ui" id="4g5g-bands-amp-combos-ui" style="color: inherit; text-decoration: none;">
+					<h1>4G/5G Bands &amp; Combos UI</h1>
+				</a>
+				<a href="#environments" id="environments" style="color: inherit; text-decoration: none;">
+					<h2>Environments</h2>
+				</a>
+				<ul>
+					<li>Production <a href="https://cacombos.com">https://cacombos.com</a></li>
+					<li>Stage <a href="https://stage.cacombos.com">https://stage.cacombos.com</a></li>
+				</ul>
+				<a href="#build-amp-deploy-to-production" id="build-amp-deploy-to-production" style="color: inherit; text-decoration: none;">
+					<h2>Build &amp; Deploy to production</h2>
+				</a>
+				<p>Clone Repository</p>
+				<pre><code><span style="color: #001080">git</span><span style="color: #000000"> </span><span style="color: #001080">clone</span><span style="color: #000000"> https:</span><span style="color: #008000">//github.com/cacombos/cacombos-ui.git</span>
+</code></pre>
+				<a href="#docker" id="docker" style="color: inherit; text-decoration: none;">
+					<h3>Docker</h3>
+				</a>
+				<p>Use Docker and Docker Compose to set up production enviroment.</p>
+				<pre><code><span style="color: #001080">docker</span><span style="color: #000000"> </span><span style="color: #001080">build</span><span style="color: #000000"> -</span><span style="color: #001080">t</span><span style="color: #000000"> </span><span style="color: #001080">cacombos</span><span style="color: #000000">/</span><span style="color: #001080">cacombos</span><span style="color: #000000">-</span><span style="color: #001080">ui</span><span style="color: #000000"> .</span>
+</code></pre>
+				<a href="#without-docker" id="without-docker" style="color: inherit; text-decoration: none;">
+					<h2>Without Docker</h2>
+				</a>
+				<p>Requirements:</p>
+				<ul>
+					<li>NodeJS 14</li>
+					<li>Angular CLI</li>
+					<li>Yarn</li>
+				</ul>
+				<p>Install Node packages and start server.</p>
+				<pre><code><span style="color: #001080">yarn</span>
+<span style="color: #001080">yarn</span><span style="color: #000000"> build:</span><span style="color: #001080">ssr</span>
+<span style="color: #001080">yarn</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> serve:</span><span style="color: #001080">ssr</span>
+</code></pre>
+				<a href="#development" id="development" style="color: inherit; text-decoration: none;">
+					<h2>Development</h2>
+				</a>
+				<p>Just click below to start development in Gitpod. You must register to service with your Github account.</p>
+				<p><a href="https://gitpod.io/#https://github.com/cacombos/cacombos-ui"><img src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod" alt="Gitpod ready-to-code"></a></p>
+				<a href="#docker-1" id="docker-1" style="color: inherit; text-decoration: none;">
+					<h3>Docker</h3>
+				</a>
+				<p>Build, install Node-modules and start dev environment.</p>
+				<pre><code><span style="color: #001080">docker</span><span style="color: #000000">-</span><span style="color: #001080">compose</span><span style="color: #000000"> </span><span style="color: #001080">build</span>
+<span style="color: #001080">docker</span><span style="color: #000000">-</span><span style="color: #001080">compose</span><span style="color: #000000"> </span><span style="color: #001080">up</span><span style="color: #000000"> -</span><span style="color: #001080">d</span>
+</code></pre>
+				<p>You can then modify files locally and see changes via browser <a href="http://localhost:4200">http://localhost:4200</a></p>
+				<a href="#without-docker-1" id="without-docker-1" style="color: inherit; text-decoration: none;">
+					<h3>Without Docker</h3>
+				</a>
+				<p>Requirements:</p>
+				<ul>
+					<li>NodeJS 14</li>
+					<li>Angular CLI</li>
+					<li>Yarn</li>
+				</ul>
+				<p>Run <code>yarn</code> to install Node-modules</p>
+				<a href="#development-server" id="development-server" style="color: inherit; text-decoration: none;">
+					<h4>Development server</h4>
+				</a>
+				<p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
+				<a href="#code-scaffolding" id="code-scaffolding" style="color: inherit; text-decoration: none;">
+					<h4>Code scaffolding</h4>
+				</a>
+				<p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
+				<a href="#running-unit-tests" id="running-unit-tests" style="color: inherit; text-decoration: none;">
+					<h4>Running unit tests</h4>
+				</a>
+				<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
+				<a href="#running-end-to-end-tests" id="running-end-to-end-tests" style="color: inherit; text-decoration: none;">
+					<h4>Running end-to-end tests</h4>
+				</a>
+				<p>Run <code>ng e2e</code> to execute the end-to-end tests via <a href="http://www.protractortest.org/">Protractor</a>.</p>
+				<a href="#further-help" id="further-help" style="color: inherit; text-decoration: none;">
+					<h3>Further help</h3>
+				</a>
+				<p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://angular.io/cli">Angular CLI Overview and Command Reference</a> page.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_service_service.html">api-<wbr>service.service</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_service_service_spec.html">api-<wbr>service.service.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/app_routing_module.html">app-<wbr>routing.module</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/app_component.html">app.component</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/app_component_spec.html">app.component.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/app_module.html">app.module</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/app_server_module.html">app.server.module</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contribute_page_contribute_page_component.html">contribute-<wbr>page/contribute-<wbr>page.component</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contribute_page_contribute_page_component_spec.html">contribute-<wbr>page/contribute-<wbr>page.component.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/device_page_device_page_component.html">device-<wbr>page/device-<wbr>page.component</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/device_page_device_page_component_spec.html">device-<wbr>page/device-<wbr>page.component.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/faq_page_faq_page_component.html">faq-<wbr>page/faq-<wbr>page.component</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/faq_page_faq_page_component_spec.html">faq-<wbr>page/faq-<wbr>page.component.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/home_page_home_page_component.html">home-<wbr>page/home-<wbr>page.component</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/home_page_home_page_component_spec.html">home-<wbr>page/home-<wbr>page.component.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/not_found_not_found_component.html">not-<wbr>found/not-<wbr>found.component</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/not_found_not_found_component_spec.html">not-<wbr>found/not-<wbr>found.component.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/not_found_not_found_service.html">not-<wbr>found/not-<wbr>found.service</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/privacy_page_privacy_page_component.html">privacy-<wbr>page/privacy-<wbr>page.component</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/privacy_page_privacy_page_component_spec.html">privacy-<wbr>page/privacy-<wbr>page.component.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/search_page_search_page_component.html">search-<wbr>page/search-<wbr>page.component</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/search_page_search_page_component_spec.html">search-<wbr>page/search-<wbr>page.component.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/terms_page_terms_page_component.html">terms-<wbr>page/terms-<wbr>page.component</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/terms_page_terms_page_component_spec.html">terms-<wbr>page/terms-<wbr>page.component.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/toast_container_toast_container_component.html">toast-<wbr>container/toast-<wbr>container.component</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/toast_container_toast_container_component_spec.html">toast-<wbr>container/toast-<wbr>container.component.spec</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/toast_service_service.html">toast-<wbr>service.service</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/toast_service_service_spec.html">toast-<wbr>service.service.spec</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
