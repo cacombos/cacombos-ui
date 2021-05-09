@@ -20,4 +20,5 @@ jobs:
         source-directory: 'docs'
         destination-repository-username: 'cacombos'
         destination-repository-name: 'cacombos-ui-docs'
+        user-email: combos@cacombos.com
         target-branch: main
