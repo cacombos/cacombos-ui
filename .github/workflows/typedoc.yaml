@@ -1,0 +1,22 @@
+name: Typedoc generate docs
+on:
+  push:
+    branches:
+    - develop
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+    - run: |
+        yarn
+        npx typedoc src/app/
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.1
+      with:
+        branch: gh-pages
+        folder: docs

@@ -51,3 +51,6 @@ docker-compose*.yml
 .github/
 .gitlab-ci.yml
 .gitpod.yml
+
+typedoc.json
+docs/
