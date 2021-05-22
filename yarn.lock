@@ -6583,10 +6583,10 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng-hcaptcha@^1.0.0-beta.2:
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/ng-hcaptcha/-/ng-hcaptcha-1.0.0-beta.3.tgz#173e735a6810e3d10e34b10810b1bd35521dc82f"
-  integrity sha512-04XFvdhTFRVhH4swjgQ375W/dhsvldLF1zeJ5bcrvKCIn1begNNvjijf4z6+0ANGywPMQA1sNmDP/SYQlcN+Gg==
+ng-hcaptcha@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ng-hcaptcha/-/ng-hcaptcha-1.0.0.tgz#0ab5b1b21ceca7bffe11589c70e6a0e4bdc005f8"
+  integrity sha512-f2bhly0t3UnAgMay01Fh8f0Yh/sCGjW2hnG3mKvvyr0ldJzs63VMAK1ylr4/eoQ1v95NmfKg5L8kVG73+n/4ew==
   dependencies:
     tslib "^2.0.0"
 
