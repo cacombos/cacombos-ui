@@ -6590,7 +6590,7 @@ ng-hcaptcha@^1.0.0:
   dependencies:
     tslib "^2.0.0"
 
-ngx-bootstrap-multiselect@^2.1.0:
+ngx-bootstrap-multiselect@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ngx-bootstrap-multiselect/-/ngx-bootstrap-multiselect-2.1.1.tgz#5c558ae2a605cb866946efe088e47a5c376456e6"
   integrity sha512-BKE34b8wavxAyUlsZSPwR8p048sjfgVwBLMh5U0pw4TEt3onuF3+JzoTa2LAhPBhNxu+wc7af4IjdJ4mlrhKmQ==

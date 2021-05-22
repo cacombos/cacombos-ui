@@ -44,7 +44,7 @@
     "express": "^4.15.2",
     "global": "^4.4.0",
     "ng-hcaptcha": "^1.0.0",
-    "ngx-bootstrap-multiselect": "^2.1.0",
+    "ngx-bootstrap-multiselect": "^2.1.1",
     "ngx-cookie": "^5.0.0",
     "ngx-cookie-backend": "^5.0.0",
     "rxjs": "~6.6.7",
