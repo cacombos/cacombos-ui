@@ -166,32 +166,53 @@ cd scat</pre>
                 <img class="img-fluid" src="/assets/photo_2020-07-19_12-32-43.jpg" />
             </ng-template>
         </ngb-panel>
-        <ngb-panel id="toggle-5" title="OnePlus, Oppo and Realme (Qualcomm Only)" [disabled]="!isBrowser">
+        <ngb-panel id="toggle-5" title="OnePlus, Oppo and Realme" [disabled]="!isBrowser">
             <ng-template ngbPanelContent>
-                <p><i>If you have Mediatek device, please follow Mediatek instruction on Mediatek Devices section</i></p>
                 <ul>
                     <li> Call to <kbd>*#800#</kbd> from phone app to enter to LogKit</li>
                     <li>
                         <ul>
                             <li>OnePlus Android 9 and older: Go to Advanced -> Get QXDM Log and open device log to start logging.</li>
                             <li>OnePlus Android 10: Go to QXDM Log section and click star logging icon</li>
-                            <li>Realme Android 10: Go to Cellular Network and Calls -> Start recording </li>
+                            <li>Realme Android 10: Go to Cellular Network and Calls / Network -> Start recording </li>
+                            <li>Realme Android 11: <ul>
+                                <li>Open Settings on right top menu and change Modes from User mode to Developer mode.</li>
+                                <li>Go back -> Mobile Networks and start recording</li>
+                            </ul>
+                        </li>
                         </ul>
                     </li>
                     <div class="row">
-                        <div class="col-xs-6" style="max-width:256px">
+                        <div class="col-xs-6" style="max-width:256px; margin: 2px;">
                             <img class="img-fluid" src="/assets/photo_2020-06-16_17-48-07.jpg"/>
+                            <small>OnePPlus from OnePlus A10 and newer</small>
                         </div>
-                        <div class="col-xs-6" style="max-width:256px">
-                            <img class="img-fluid" src="/assets/photo_2020-05-11_22-50-49.jpg"/>
+                        <div class="col-xs-6" style="max-width:256px; margin: 2px;">
+                            <img class="img-fluid" src="/assets/photo_2021-05-23_13-05-36.jpg"/>
+                            <small>Feedback-menu from Realme A10</small>
+                        </div>
+                        <div class="col-xs-6" style="max-width:256px; margin: 2px;">
+                            <img class="img-fluid" src="/assets/photo_2021-05-23_12-25-10.jpg" />
+                            <small>Feedback-menu from Realme A11</small>
                         </div>
                     </div>
                     <li>Switch your device to Airplane Mode, wait few second and turn Airplane mode off. Wait some time to get connected to 4G LTE network.</li> 
                     <li>Stop logging with stop icon / close device log</li>
                     <li>Enter to the file manager and find the log file
                         <ul>
-                            <li>Android 10 and older log file saved to <code>/sdcard/oem_log/XXXX/mdm</code> (XXXX is some generated timestamp value) and file extension is qmdl or qmdl2 (Example filename diag_log_20210324_1353561616586836381.qmdl).</li>
-                            <li>Android 11 and newer log file saved to <code>/sdcard/Android/oem_log</code> (To access directory open AOSP Files app via Android Settings -> Storage -> Files) and log file extension .bin (Example file name: diag_qdss_log_mpss_20210326_1734181616794458624.bin). </li>
+                            <li>OnePlus:
+                                <ul>
+                                    <li>Android 10 and older log file saved to File Manager -> oem_log. Find qmdl or qmdl2 file (Example filename diag_log_20210324_1353561616586836381.qmdl).</li>
+                                    <li>Android 11 and newer log file saved to File Manager -> Android -> oem_log (To access directory open AOSP Files app via Android Settings -> Storage -> Files). Find log file log file with extension .bin (Example file name: diag_qdss_log_mpss_20210326_1734181616794458624.bin). </li>
+                                </ul>
+                            </li>
+                            <li>Oppo & Realme:
+                                <ul>
+                                    <li>Android 10 and older log file saved to File Manager -> oppo_log. Find qmdl or qmdl2 file (Example filename diag_log_20210324_1353561616586836381.qmdl). </li>
+                                    <li>Android 11 and newer log file saved to File Manager -> Android -> com.coloros.logkit (To access directory open AOSP Files app via Android Settings -> Storage -> Files). Find log file log file with extension .bin (Example file name: diag_qdss_log_mpss_20210326_1734181616794458624.bin).</li>
+                                </ul>
+                                If have Mediatek device, then find directory MDLog (example MDLog1_2020_1211_161842). Compress it before upload to site.
+                            </li>
                         </ul>
                     </li>
                 </ul>
