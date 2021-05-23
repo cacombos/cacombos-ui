@@ -197,6 +197,29 @@ cd scat</pre>
                 </ul>
             </ng-template>
         </ngb-panel>
+        <ngb-panel id="toggle-13" title="Vivo Devices" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p><i>Tested with VIVO IQOO7</i></p>
+                <ul>
+                    <li>Call to <kbd>*#*#112#*#*</kbd> to access LOG interface.</li>
+                    <li>Go to More on right top and change User type from Normal user to Test user.</li>
+                    <img class="img-fluid" src="/assets/photo_2021-05-23_11-24-24.jpg" />
+                    <li>Go back to main Loging interface, change logging configuration to <b>Modem&Audio exeption</b> on dropdown menu. </li>
+                    <li>Start logging with Play button.</li>
+                    <img class="img-fluid" src="/assets/photo_2021-05-23_11-23-17.jpg" />
+                    <li>Toggle Airplane Mode on</li>
+                    <li>Wait 5-10 seconds then toggle Airplane Mode off</li>
+                    <li>Wait 30 seconds and stop logging. Don't upload logs.</li>
+                    <li>Enter to the file manager and find the log file
+                        <ul>
+                            <li>Qualcomm: File Manager -> bbklog -> diag_logs. and find named in mdm or mdm2 directory with .bin,.qmdl or qmdl2 extension. If there is both, the .bin is corect one. (Example file name: diag_qdss_log_mpss_20210326_1734181616794458624.bin)</li>
+                            <li>Mediatek: File Manager -> mtklog and find directory named MDLog1... (Example: MDLog1_2021_0522_144028). Compress this directory before uploading to our site.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Source: <a target="_blank" rel="noopener" href="https://www.vivo.com/en/support/questionList?categoryId=52874&FAQId=67589&fromSupportSuggestion=How">Vivo</a></p>
+            </ng-template>
+        </ngb-panel>
         <ngb-panel id="toggle-6" title="Xiaomi devices (Qualcomm only)" [disabled]="!isBrowser">
             <ng-template ngbPanelContent>
                 <p><i>If you have Mediatek device, please follow Mediatek instruction on Mediatek Devices section</i></p>
