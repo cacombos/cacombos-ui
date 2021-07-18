@@ -3,7 +3,8 @@ image: gitpod/workspace-full
 
 # Command to start on workspace startup
 tasks:
-  - init: | 
+  - init: |
+      export NG_CLI_ANALYTICS=off
       npm install -g @angular/cli
       yarn
     command: ng serve
@@ -13,4 +14,4 @@ ports:
     onOpen: open-preview
 vscode:
   extensions:
-    - angular.ng-template@11.1.1:gz+KMBUNwIOhMWL7i8O1oQ==
+    - angular.ng-template
