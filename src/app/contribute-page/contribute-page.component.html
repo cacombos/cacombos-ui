@@ -41,15 +41,15 @@ $ unzip Diag.zip</pre>
         </ngb-panel>
         <ngb-panel id="toggle-2" title="Scat (Qualcomm and Exynos)" [disabled]="!isBrowser">
             <ng-template ngbPanelContent>
-                <p> Scat will save modem log to qmdl file (Qualcomm only) and pcap (Qualcomm and Exynos).</p>
-                <h4> Install to Debian/Ubuntu</h4>
-                <p>Install some packages from package manager and clone scat from Github</p>
+                <p> Scat will save the modem log in qmdl format (Qualcomm only) and in pcap format (Qualcomm and Exynos).</p>
+                <h4> Install on Debian/Ubuntu</h4>
+                <p>Install prerequisite packages from python pip package manager, then clone scat from Github</p>
                 <figure class="highlight">
                     <pre>sudo apt-get install git python3-usb python3-serial
 git clone https://github.com/fgsect/scat
 cd scat</pre>
                 </figure>
-                <h4> Install to MacOS</h4>
+                <h4> Install on MacOS</h4>
                 <p> Run these commands in <a target="_blank" rel="noopener" href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">MacOS terminal</a>.</p>
                 <figure class="highlight">
                     <pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -59,8 +59,30 @@ python3 -m pip install pyserial
 python3 -m pip install libusb
 git clone https://github.com/fgsect/scat
 cd scat</pre>
+                <h3> Extra steps for macOS M1</h4>
+                <p> Run these commands in <a target="_blank" rel="noopener" href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">MacOS terminal</a>.</p>
+                <figure class="highlight">
+                    <pre>
+On M1, we need a compatibility library to support usb enumeration, but this can only be installed with Homebrew in Rosetta
+Open Finder and navigate to Applications -> Utilities
+Right-click on the "Terminal" app and choose Duplicate
+Rename the duplicated "Terminal" app to "Terminal x86_64"
+Right-click the Terminal x86_64 app, then click on "Get Info"
+Select the option to "Open using Rosetta"
+Launch from here or drag to the dock for a shortcut
+Then, install Homebrew from within the x86_64 emulated terminal
+% /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+Then install the library
+% brew install libusb libusb-compat
+Now, install lsusb so you can find the hub ID of your connected device (required on M1 or you'll get a device not found error)
+% brew install lsusb
+Run lsusb to get your device hub ID
+% lsusb
+% Bus 000 Device 001: ID 05c6:90dc Qualcomm, Inc SAMSUNG_Android
+In the section "Run Scat" below, replace 000:255 with the hub ID you obtained above i.e. 000:001
+</pre>
                 </figure>
-                <h4> Install to Windows</h4>
+                <h4> Install on Windows</h4>
                 <p> Install Python from <a target="_blank" rel="noopener"
                         href="https://www.microsoft.com/en-us/p/python-38/9mssztt1n39l#activetab=pivot:overviewtab">Windows
                         Store</a>
