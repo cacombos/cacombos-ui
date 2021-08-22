@@ -59,7 +59,7 @@ python3 -m pip install pyserial
 python3 -m pip install libusb
 git clone https://github.com/fgsect/scat
 cd scat</pre>
-                <h3> Extra steps for macOS M1</h4>
+                <h4> Extra steps for macOS M1</h4>
                 <p> Run these commands in <a target="_blank" rel="noopener" href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">MacOS terminal</a>.</p>
                 <figure class="highlight">
                     <pre>
@@ -87,7 +87,7 @@ In the section "Run Scat" below, replace 000:255 with the hub ID you obtained ab
                         href="https://www.microsoft.com/en-us/p/python-38/9mssztt1n39l#activetab=pivot:overviewtab">Windows
                         Store</a>
                     and <a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></p>
-                <p> Open PowerShell with Administrator and install some python packages and clone repository.</p>
+                <p> Open PowerShell with Administrator and install prerequisite python packages, then clone the repository.</p>
                 <figure class="highlight">
                     <pre>cd C:
 pip3 install pyusb
@@ -100,10 +100,10 @@ cd scat</pre>
                 <h5>Non-root methods</h5>
                 <p>Some devices allow enable USB-diag without root:</p>
                 <ul>
-                    <li>Samsung devices can enable diag calling <kbd>*#0808#</kbd> and then enable DM + RMNET + MODEM (Qualcomm) or RNDIS + ACM + DM + ADB (Exynos). Certain version of firmwares after 2018 blocking the access to hidden menu with code. No solution then without root.</li>
-                    <li>OnePlus, Realme and Oppo devices: Enable diag calling <kbd>*#8011#</kbd>. To disable, disable/enable USB Debugging in Developers Menu.</li>
-                    <li>Alcatel/TLC devices can enable diag call to <kbd>###2324#</kbd> until device promts Diag Protector OFF. </li>
-                    <li>Blackberry devices can enable diag calling to <kbd>*#46368676#*#*</kbd> to enter to Testing-menu and enable RMNET.</li>
+                    <li>Samsung devices can enable diag by dialing <kbd>*#0808#</kbd> and then enabling DM + RMNET + MODEM (Qualcomm) or RNDIS + ACM + DM + ADB (Exynos). Certain version of firmwares after 2018 blocking the access to hidden menu with code. No solution then without root.</li>
+                    <li>OnePlus, Realme and Oppo devices: Enable diag by dialing <kbd>*#8011#</kbd>. To disable, disable/enable USB Debugging in Developers Menu.</li>
+                    <li>Alcatel/TLC devices can enable diag by dialing <kbd>###2324#</kbd> until the device prompts with Diag Protector OFF. </li>
+                    <li>Blackberry devices can enable diag by dialing <kbd>*#46368676#*#*</kbd> to enter the Testing-menu and enable RMNET.</li>
                 </ul>
                 <h5>Root required methods</h5>
                 <p>These methods should work almost every rooted Android Qualcomm-devices</p>
@@ -154,7 +154,7 @@ cd scat</pre>
                 <figure class="highlight">
                     <pre>python3 ./scat.py -t sec -m e303 -u -a 001:001  -i 4 -F sim1.pcap</pre>
                 </figure>
-                <p>During logging, switch your device to Airplane Mode, wait second and turn Airplane mode off. Wait a few minute to get connected to 4G LTE network. Stop logging with <kbd>CTRL+C.</kbd></p>
+                <p>During logging, switch your device to Airplane Mode, wait a few seconds and then turn Airplane mode off. Wait a few minutes to get connected to a 4G LTE or 5G network to capture all of the signaling. Stop logging with <kbd>CTRL+C.</kbd></p>
                 <p>If you like you can read pcap file with <a target="_blank" rel="noopener" href="https://www.wireshark.org/">Wireshark</a>. To convert qmdl, qmdl2 and dlf files to pcap, use scat: </p>
                 <figure class="highlight">
                     <pre>python3 ./scat.py -t qc -d log.qmdl -F log.pcap</pre>
