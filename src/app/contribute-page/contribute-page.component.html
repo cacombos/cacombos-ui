@@ -41,36 +41,53 @@ $ unzip Diag.zip</pre>
         </ngb-panel>
         <ngb-panel id="toggle-2" title="Scat (Qualcomm and Exynos)" [disabled]="!isBrowser">
             <ng-template ngbPanelContent>
-                <p> Scat will save modem log to qmdl file (Qualcomm only) and pcap (Qualcomm and Exynos).</p>
-                <h4> Install to Debian/Ubuntu</h4>
-                <p>Install some packages from package manager and clone scat from Github</p>
+                <p> Scat will save the modem log in qmdl format (Qualcomm only) and in pcap format (Qualcomm and Exynos).</p>
+                <h4> Install on Debian/Ubuntu</h4>
+                <p>Install prerequisite packages from python pip package manager, then clone scat from Github</p>
                 <figure class="highlight">
-                    <pre>sudo apt-get install git python3-usb python3-serial
+                    <pre>sudo apt-get install git
 git clone https://github.com/fgsect/scat
-cd scat</pre>
+cd scat
+pip install -r requirements.txt
+</pre>
                 </figure>
-                <h4> Install to MacOS</h4>
+                <h4> Install on macOS</h4>
                 <p> Run these commands in <a target="_blank" rel="noopener" href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">MacOS terminal</a>.</p>
                 <figure class="highlight">
                     <pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3 get-pip.py
-python3 -m pip install pysub
-python3 -m pip install pyserial
+python3 -m pip install -r requirements.txt
 python3 -m pip install libusb
 git clone https://github.com/fgsect/scat
 cd scat</pre>
                 </figure>
-                <h4> Install to Windows</h4>
+                <h5> Extra steps for M1</h5>
+                <ul>
+                    <li>On M1, we need a compatibility library to support usb enumeration, but this can only be installed with Homebrew in Rosetta</li>
+                    <li>Open Finder and navigate to Applications -> Utilities</li>
+                    <li>Right-click on the "Terminal" app and choose Duplicate</li>
+                    <li>Rename the duplicated "Terminal" app to "Terminal x86_64"</li>
+                    <li>Right-click the Terminal x86_64 app, then click on "Get Info"</li>
+                    <li>Select the option to "Open using Rosetta"</li>
+                    <li>Launch from here or drag to the dock for a shortcut</li>
+                    <li>Install <a target="_blank" rel="noopener" href="https://brew.sh/">Homebrew</a> from within the x86_64 emulated terminal<br />
+                    <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></li>
+                    <li>Install libusb and lsusb with brew to communicate with your device over USB. You have to install libusb with libusb-compat to make sure this work with your M1.<br />
+                    <code>brew install libusb libusb-compat lsusb</code></li>
+                    <li>Run lsusb to get your device hub ID
+                        <br /> <code>lsusb</code>
+                    </li>
+                </ul>
+                <h4> Install on Windows</h4>
                 <p> Install Python from <a target="_blank" rel="noopener"
                         href="https://www.microsoft.com/en-us/p/python-38/9mssztt1n39l#activetab=pivot:overviewtab">Windows
                         Store</a>
                     and <a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></p>
-                <p> Open PowerShell with Administrator and install some python packages and clone repository.</p>
+                <p> Open PowerShell with Administrator and install prerequisite python packages, then clone the repository.</p>
                 <figure class="highlight">
                     <pre>cd C:
-pip3 install pyusb
-pip3 install pyserial
 git clone https://github.com/fgsect/scat
+pip3 install -r requirements.txt
 cd scat</pre>
                 </figure>
                 <h4> Enable diag </h4>
@@ -78,10 +95,10 @@ cd scat</pre>
                 <h5>Non-root methods</h5>
                 <p>Some devices allow enable USB-diag without root:</p>
                 <ul>
-                    <li>Samsung devices can enable diag calling <kbd>*#0808#</kbd> and then enable DM + RMNET + MODEM (Qualcomm) or RNDIS + ACM + DM + ADB (Exynos). Certain version of firmwares after 2018 blocking the access to hidden menu with code. No solution then without root.</li>
-                    <li>OnePlus, Realme and Oppo devices: Enable diag calling <kbd>*#8011#</kbd>. To disable, disable/enable USB Debugging in Developers Menu.</li>
-                    <li>Alcatel/TLC devices can enable diag call to <kbd>###2324#</kbd> until device promts Diag Protector OFF. </li>
-                    <li>Blackberry devices can enable diag calling to <kbd>*#46368676#*#*</kbd> to enter to Testing-menu and enable RMNET.</li>
+                    <li>Samsung devices can enable diag by dialing <kbd>*#0808#</kbd> and then enabling DM + RMNET + MODEM (Qualcomm) or RNDIS + ACM + DM + ADB (Exynos). Certain version of firmwares after 2018 blocking the access to hidden menu with code. No solution then without root.</li>
+                    <li>OnePlus, Realme and Oppo devices: Enable diag by dialing <kbd>*#8011#</kbd>. To disable, disable/enable USB Debugging in Developers Menu.</li>
+                    <li>Alcatel/TLC devices can enable diag by dialing <kbd>###2324#</kbd> until the device prompts with Diag Protector OFF. </li>
+                    <li>Blackberry devices can enable diag by dialing <kbd>*#46368676#*#*</kbd> to enter the Testing-menu and enable RMNET.</li>
                 </ul>
                 <h5>Root required methods</h5>
                 <p>These methods should work almost every rooted Android Qualcomm-devices</p>
@@ -132,7 +149,7 @@ cd scat</pre>
                 <figure class="highlight">
                     <pre>python3 ./scat.py -t sec -m e303 -u -a 001:001  -i 4 -F sim1.pcap</pre>
                 </figure>
-                <p>During logging, switch your device to Airplane Mode, wait second and turn Airplane mode off. Wait a few minute to get connected to 4G LTE network. Stop logging with <kbd>CTRL+C.</kbd></p>
+                <p>During logging, switch your device to Airplane Mode, wait a few seconds and then turn Airplane mode off. Wait a few minutes to get connected to a 4G LTE or 5G network to capture all of the signaling. Stop logging with <kbd>CTRL+C.</kbd></p>
                 <p>If you like you can read pcap file with <a target="_blank" rel="noopener" href="https://www.wireshark.org/">Wireshark</a>. To convert qmdl, qmdl2 and dlf files to pcap, use scat: </p>
                 <figure class="highlight">
                     <pre>python3 ./scat.py -t qc -d log.qmdl -F log.pcap</pre>
