@@ -228,7 +228,7 @@ cd scat</pre>
                                     <li>Android 10 and older log file saved to File Manager -> oppo_log. Find qmdl or qmdl2 file (Example filename diag_log_20210324_1353561616586836381.qmdl). </li>
                                     <li>Android 11 and newer log file saved to File Manager -> Android -> com.coloros.logkit (To access directory open AOSP Files app via Android Settings -> Storage -> Files). Find log file log file with extension .bin (Example file name: diag_qdss_log_mpss_20210326_1734181616794458624.bin).</li>
                                 </ul>
-                                If have Mediatek device, then find directory MDLog (example MDLog1_2020_1211_161842). Compress it before upload to site.
+                                If have Mediatek device, then find directory MDLog (example MDLog1_2020_1211_161842). Compress it before upload to site. With ColorOS and Android 11 you may have to use <a target="_blank" rel="noopener" title="Files App" href="https://play.google.com/store/apps/details?id=com.marc.files">Files app</a> to access hidden File Manager directory.
                             </li>
                         </ul>
                     </li>
@@ -369,6 +369,7 @@ cd scat</pre>
                 <p><code>%AppData%\Apple Computer\Logs\CrashReporter\MobileDevice\[Your_Device_Name]\Baseband\</code>
                 <br /> In this directory you should find qmdl log file. The log files are splitted to multiple 1MB files. If you have iPhone 12/12 Pro/12 Pro max the log file is in new qdss format and log file extension is .bin. 
                 </p>
+                <p>If you have Intel version of device then logging extensions is istp. You can also try submit these files to us and we could try parse and find combinations from Intel modem files.</p>
                 <h4> Stop logging</h4>
                 <p> To stop logging you have to remove baseband profile from your device.</p>
                 <ul>
