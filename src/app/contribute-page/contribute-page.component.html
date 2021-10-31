@@ -26,6 +26,7 @@ $ cd diag_logs
 $ curl https://cacombos.com/assets/Diag.zip > Diag.zip
 $ unzip Diag.zip</pre>
                 </figure>
+                <p>For new SDX53/60 devices you may also have to create another directory before logging with command <code>mkdir -p /data/vendor/ramdump/diag_logs/</code></p>
                 <p>Now we are ready to start logging. You have to now use su to get root-permission and then start
                     logging with diag_mdlog command</p>
                 <figure class="highlight">
@@ -395,6 +396,27 @@ cd scat</pre>
                     <li>Browse to internal storage -> debuglogger -> mdlog</li>
                     <li>Compress the newest folder (ex: MDLog1_2020_1211_161842) and share it with us.</li>
                     <img class="img-fluid" src="/assets/photo_2020-12-12_00-59-51.jpg" />
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-14" title="Shannon Devices" [disabled]="!isBrowser">
+            <ng-template ngbPanelContent>
+                <p>This works with Shannon modem devices except Samsung Exynos device (eg. Pixel 6 and 6 Pro). For Samsung, please use Exynos internal logging by exposing modem to Scat, ShannonDM or Airscreen. Require root.</p>
+                <ul>
+                    <li>Open terminal with adb shell or with Terminal app. </li>
+                    <li> Start logging with in superuser (su)
+                        <figure class="highlight">
+                            <pre>$ su
+# modem_logging_control START </pre>
+                        </figure>
+                    </li>
+                    <li>Turn on Airplane mode and wait for 5-10 seconds. Turn off Airplane mode.</li>
+                    <li>End logging with command
+                        <figure class="highlight">
+                            <pre># modem_logging_control STOP </pre>
+                        </figure>
+                    </li>
+                    <li>You can find logging file now in `/data/vendor/slog`</li>
                 </ul>
             </ng-template>
         </ngb-panel>
