@@ -1246,10 +1246,10 @@
     merge-source-map "^1.1.0"
     schema-utils "^2.7.0"
 
-"@material-icons/font@^1.0.4":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@material-icons/font/-/font-1.0.8.tgz#3116ae9234dcd065fafac35525d1d9e8d70f7375"
-  integrity sha512-o3k/faozPSu+dNjicy29a2MUHNEn07JUgAPjKHXzPaEyKlb+HUUbq6Oo9iRTM0vORc5+8XWWSyvtLyrQSHafHg==
+"@material-icons/font@^1.0.9":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@material-icons/font/-/font-1.0.10.tgz#de14211d30bac80592137ef3a8a4a69dd5be208e"
+  integrity sha512-aen930vAkhawimt3uwJdZ0sqW3ceeJo1Im3NGVtSSJBJNc2VOfSLgxsz9RQZYinTaIX9cAoVVAhICAm2dVS1Og==
 
 "@ng-bootstrap/ng-bootstrap@^9.1.0":
   version "9.1.0"
