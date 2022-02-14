@@ -1,70 +1,70 @@
 <nav ngbNav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="" (click)="setTitle( '4G/5G Bands & Combos' )"
-        (click)="navbarCollapsed = true">{{title}}</a>
-    <button (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed" class="navbar-toggler"
-        type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div [ngbCollapse]="navbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li ngbNavItem>
-                <a class="nav-link" routerLink="/"
-                    (click)="navbarCollapsed = true"> Home </a>
-            </li>
-            <li ngbNavItem>
-                <a class="nav-link" href="https://blog.cacombos.com"
-                    (click)="navbarCollapsed = true"> Blog </a>
-            </li>
-            <li ngbNavItem>
-                <a class="nav-link" (click)="setTitle( 'FAQ | 4G/5G Bands & Combos' )" routerLink="/faq"
-                    (click)="navbarCollapsed = true"> FAQ </a>
-            </li>
-            <li ngbNavItem>
-                <a class="nav-link" (click)="setTitle( 'Contribute  | 4G/5G Bands & Combos' )" routerLink="/contribute"
-                    (click)="navbarCollapsed = true"> Contribute </a>
-            </li>
-            <ng-container *ngIf="this.login == true">
-                <li ngbDropdown class="nav-item dropdown">
-                    <a ngbDropdownToggle class="nav-link" id="navbarDropdownAdmin" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Admin
-                    </a>
-                    <div ngbDropdownMenu aria-labelledby="navbarDropdownAdmin">
-                        <a ngbDropdownItem (click)="navbarCollapsed = true" style="cursor: pointer;"
-                            (click)="clearSiteCache('all')"> Clear All Site Cache</a>
-                        <a ngbDropdownItem (click)="navbarCollapsed = true" style="cursor: pointer;"
-                            (click)="doLogout()"> Logout</a>
-                    </div>
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="" (click)="setTitle( '4G/5G Bands & Combos' )"
+            (click)="navbarCollapsed = true">{{title}}</a>
+        <button (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed"
+            class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div [ngbCollapse]="navbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li ngbNavItem>
+                    <a class="nav-link" routerLink="/" (click)="navbarCollapsed = true"> Home </a>
                 </li>
-            </ng-container>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" (submit)="submitForm()">
-            <input [disabled]="!isBrowser" class="form-control mr-sm-2" type="search" name="key" [(ngModel)]="searchKey"
-                placeholder="Search" aria-label="Search" maxlength="50" required>
-            <button [disabled]="!isBrowser" class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                <fa-icon [icon]="faSearch"></fa-icon>
-            </button>
-        </form>
-        <ul class="nav navbar-nav">
-            <li ngbNavItem>
-                <a class="nav-link" href="https://www.facebook.com/4G5Gcombos/" target="_blank" rel="noopener"
-                    (click)="navbarCollapsed = true">
-                    <fa-icon [icon]="faFacebook"></fa-icon>
-                </a>
-            </li>
-            <li ngbNavItem>
-                <a class="nav-link" href="https://twitter.com/cacombos" target="_blank" rel="noopener"
-                    (click)="navbarCollapsed = true">
-                    <fa-icon [icon]="faTwitter"></fa-icon>
-                </a>
-            </li>
-            <li ngbNavItem>
-                <a class="nav-link" href="/feed" target="_blank" (click)="navbarCollapsed = true">
-                    <fa-icon [icon]="faRss"></fa-icon>
-                </a>
-            </li>
-        </ul>
+                <li ngbNavItem>
+                    <a class="nav-link" href="https://blog.cacombos.com" (click)="navbarCollapsed = true"> Blog </a>
+                </li>
+                <li ngbNavItem>
+                    <a class="nav-link" (click)="setTitle( 'FAQ | 4G/5G Bands & Combos' )" routerLink="/faq"
+                        (click)="navbarCollapsed = true"> FAQ </a>
+                </li>
+                <li ngbNavItem>
+                    <a class="nav-link" (click)="setTitle( 'Contribute  | 4G/5G Bands & Combos' )"
+                        routerLink="/contribute" (click)="navbarCollapsed = true"> Contribute </a>
+                </li>
+                <ng-container *ngIf="this.login == true">
+                    <li ngbDropdown class="nav-item dropdown">
+                        <a ngbDropdownToggle class="nav-link" id="navbarDropdownAdmin" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                        </a>
+                        <div ngbDropdownMenu aria-labelledby="navbarDropdownAdmin">
+                            <a ngbDropdownItem (click)="navbarCollapsed = true" style="cursor: pointer;"
+                                (click)="clearSiteCache('all')"> Clear All Site Cache</a>
+                            <a ngbDropdownItem (click)="navbarCollapsed = true" style="cursor: pointer;"
+                                (click)="doLogout()"> Logout</a>
+                        </div>
+                    </li>
+                </ng-container>
+            </ul>
+            <form class="form-inline d-flex" (submit)="submitForm()">
+                <input [disabled]="!isBrowser" class="form-control mr-sm-2" type="search" name="key"
+                    [(ngModel)]="searchKey" placeholder="Search" aria-label="Search" maxlength="50" required>
+                <button [disabled]="!isBrowser" class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                </button>
+            </form>
+            <ul class="nav navbar-nav d-flex">
+                <li ngbNavItem>
+                    <a class="nav-link" href="https://www.facebook.com/4G5Gcombos/" target="_blank" rel="noopener"
+                        (click)="navbarCollapsed = true">
+                        <fa-icon [icon]="faFacebook"></fa-icon>
+                    </a>
+                </li>
+                <li ngbNavItem>
+                    <a class="nav-link" href="https://twitter.com/cacombos" target="_blank" rel="noopener"
+                        (click)="navbarCollapsed = true">
+                        <fa-icon [icon]="faTwitter"></fa-icon>
+                    </a>
+                </li>
+                <li ngbNavItem>
+                    <a class="nav-link" href="/feed" target="_blank" (click)="navbarCollapsed = true">
+                        <fa-icon [icon]="faRss"></fa-icon>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 <noscript>
@@ -84,7 +84,8 @@
 </div>
 <footer class="footer">
     <div class="container">
-        <p class="copyright text-muted">&copy; 4G/5G Bands & Combos | <a routerLink="/terms">Terms of Use</a> | <a routerLink="/privacy">Privacy</a></p>
+        <p class="copyright text-muted">&copy; 4G/5G Bands & Combos | <a routerLink="/terms">Terms of Use</a> | <a
+                routerLink="/privacy">Privacy</a></p>
     </div>
 </footer>
 <!-- <ngb-alert class="alert-status consent-alert" type="dark" [dismissible]="false" (close)="closeAlert()" *ngIf="this.hideConsent == false">
