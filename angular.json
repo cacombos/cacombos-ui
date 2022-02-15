@@ -163,7 +163,10 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": true
+              "optimization": {
+                "scripts": true,
+                "styles": false
+              }
             },
             "staging": {
               "outputHashing": "media",

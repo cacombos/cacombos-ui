@@ -16,8 +16,10 @@ export function app(): express.Express {
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
+  // Disable Critical CSS Inline https://github.com/angular/angular/issues/42098#issuecomment-841629552
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
+    inlineCriticalCss: false,
   }));
 
   server.set('view engine', 'html');
