@@ -70,7 +70,7 @@
                 </ng-container>
                 <ng-container *ngIf="device.lte_dl_category != null">
                     <tr>
-                        <td> LTE Max Speed (DL<ng-container *ngIf="device.lte_ul_speed != null">/UL</ng-container>) <button type="button" class="tooltip-button" ngbTooltip="Real maximum speed depends used ca combination, bandwidth and network configuration. You can use 4G Speedtest calculator (on site navigation bar) to calculate theoric max speed with band combinations." triggers="click:blur"> <fa-icon [icon]="faquestioncircle"></fa-icon></button></td>
+                        <td> LTE Max Speed (DL<ng-container *ngIf="device.lte_ul_speed != null">/UL</ng-container>) <button type="button" class="tooltip-button" ngbTooltip="Real maximum speed depends used ca combination, bandwidth and network configuration." triggers="click:blur"> <fa-icon [icon]="faquestioncircle"></fa-icon></button></td>
                         <td> {{device.lte_dl_speed}} <ng-container *ngIf="device.lte_ul_speed != null">/ {{device.lte_ul_speed}} </ng-container> Mbps</td>
                     </tr>
                 </ng-container>
