@@ -15,10 +15,10 @@
 </ng-container>
 <div class="container" *ngIf="loaded == true">
     <h1> Search Results </h1>
-    <form class="form-inline my-2 my-lg-0" (submit)="submitForm()">
-        <input class="form-control mr-sm-2" type="search" name="key" [(ngModel)]="searchKey" placeholder="Search" aria-label="Search"
+    <form class="form-inline d-flex" (submit)="submitForm()">
+        <input class="form-control me-2" type="search" name="key" [(ngModel)]="searchKey" placeholder="Search" aria-label="Search"
             maxlength="50" required>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        <button class="btn btn-outline-success" type="submit">
             <fa-icon [icon]="faSearch"></fa-icon>
         </button>
     </form><br />

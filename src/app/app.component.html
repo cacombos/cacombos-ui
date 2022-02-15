@@ -39,13 +39,13 @@
                 </ng-container>
             </ul>
             <form class="form-inline d-flex" (submit)="submitForm()">
-                <input [disabled]="!isBrowser" class="form-control mr-sm-2" type="search" name="key"
+                <input [disabled]="!isBrowser" class="form-control me-2" type="search" name="key"
                     [(ngModel)]="searchKey" placeholder="Search" aria-label="Search" maxlength="50" required>
-                <button [disabled]="!isBrowser" class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                <button [disabled]="!isBrowser" class="btn btn-outline-success" type="submit">
                     <fa-icon [icon]="faSearch"></fa-icon>
                 </button>
             </form>
-            <ul class="nav navbar-nav d-flex">
+            <ul class="nav navbar-nav ml-auto flex-row social-media-nav">
                 <li ngbNavItem>
                     <a class="nav-link" href="https://www.facebook.com/4G5Gcombos/" target="_blank" rel="noopener"
                         (click)="navbarCollapsed = true">

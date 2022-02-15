@@ -91,7 +91,7 @@
         </tbody>
     </table>
     <div class="row">
-        <form class="form-inline toolbar-form" role="form">
+        <form class="form-inline toolbar-form " role="form">
             <div class="form-group toolbar">
                 <label for="select-combos" style="margin-right: 10px;">Select Country / Provider&nbsp;<button type="button" class="tooltip-button" style="padding: 2px;" ngbTooltip="All Combined: Combined list all devices combolists. Default: Default combolist of this device. This will be used if there is no country/provider specific combolist. Hardware: All combos supported by hardware. Normally this will not be used if there is country/provider specific combolist." triggers="click:blur"> <fa-icon [icon]="faquestioncircle"></fa-icon></button></label>&nbsp;
                 <select id="select-combolist" name="CombolistSelection" [ngModel]="CombolistSelection" class="form-control" [disabled]="!isBrowser" (ngModelChange)="changeCombolist($event)">

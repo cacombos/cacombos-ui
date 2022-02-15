@@ -59,6 +59,10 @@ fa-icon svg {
     z-index:999;
 }
 
+.badge-info {
+    background-color: #303030;
+}
+
 @media (min-width: 576px ) {
     .devices-card {
         width: 50%;
