@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxBootstrapMultiselectModule } from 'ngx-bootstrap-multiselect';
 import { NgHcaptchaModule } from 'ng-hcaptcha';
 import { Angulartics2Module } from 'angulartics2';
+import { Angulartics2Matomo } from 'angulartics2';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import * as Sentry from "@sentry/angular";
 

@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:14-alpine AS build
+FROM node:16-alpine AS build
 WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
 RUN yarn
@@ -7,7 +7,7 @@ COPY . .
 RUN yarn run build:ssr
 
 ### STAGE 2: Run ###
-FROM node:14-alpine
+FROM node:16-alpine
 RUN apk --no-cache add curl
 WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/dist/cacombos ./dist/cacombos

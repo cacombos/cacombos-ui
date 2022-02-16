@@ -480,26 +480,28 @@ cd scat</pre>
                 in website. We don't share email address to third party.</small>
         </div>
         <div class="form-row">
-            <div class="col-md">
-                <label for="manufacturer"> Manufacturer and Model Name </label>
-                <input type="text" class="form-control" id="manufacturer" name="manufacturer" [class.is-valid]="formData.manufacturer.length != 0" [disabled]="!isBrowser"
-                    [(ngModel)]="formData.manufacturer" placeholder="eg. OnePlus 8" required>
-                    <div class="invalid-feedback">Please provide your device manufacturer and model name</div>
-            </div>
-            <div class="col-md">
-                <label for="model"> Model Number <button type="button" class="tooltip-button"
-                        ngbTooltip="How to check model number of devices? On Android, you can check model number on Android Settings -> About" triggers="click:blur">
-                        <fa-icon [icon]="faquestioncircle"></fa-icon>
-                </button> </label>
-                <input type="text" class="form-control" id="model" name="model" [class.is-valid]="formData.model.length != 0" [disabled]="!isBrowser"
-                    [(ngModel)]="formData.model" aria-describedby="modelHelp" placeholder="eg. IN2013" required>
-                <div class="invalid-feedback">Please provide your device model number</div>
-            </div>
-            <div class="col-md">
-                <label for="provider"> Provider and Country </label>
-                <input type="text" class="form-control" id="provider" name="provider" [class.is-valid]="formData.provider.length != 0" [disabled]="!isBrowser"
-                    [(ngModel)]="formData.provider" placeholder="eg. EE UK" required>
-                <div class="invalid-feedback">Please provide your devices connected provider name and your country</div>
+            <div class="row align-items-start">
+                <div class="col">
+                    <label for="manufacturer"> Manufacturer and Model Name </label>
+                    <input type="text" class="form-control" id="manufacturer" name="manufacturer" [class.is-valid]="formData.manufacturer.length != 0" [disabled]="!isBrowser"
+                        [(ngModel)]="formData.manufacturer" placeholder="eg. OnePlus 8" required>
+                        <div class="invalid-feedback">Please provide your device manufacturer and model name</div>
+                </div>
+                <div class="col">
+                    <label for="model"> Model Number <button type="button" class="tooltip-button"
+                            ngbTooltip="How to check model number of devices? On Android, you can check model number on Android Settings -> About" triggers="click:blur">
+                            <fa-icon [icon]="faquestioncircle"></fa-icon>
+                    </button> </label>
+                    <input type="text" class="form-control" id="model" name="model" [class.is-valid]="formData.model.length != 0" [disabled]="!isBrowser"
+                        [(ngModel)]="formData.model" aria-describedby="modelHelp" placeholder="eg. IN2013" required>
+                    <div class="invalid-feedback">Please provide your device model number</div>
+                </div>
+                <div class="col">
+                    <label for="provider"> Provider and Country </label>
+                    <input type="text" class="form-control" id="provider" name="provider" [class.is-valid]="formData.provider.length != 0" [disabled]="!isBrowser"
+                        [(ngModel)]="formData.provider" placeholder="eg. EE UK" required>
+                    <div class="invalid-feedback">Please provide your devices connected provider name and your country</div>
+                </div>
             </div>
         </div>
         <div class="form-group">
