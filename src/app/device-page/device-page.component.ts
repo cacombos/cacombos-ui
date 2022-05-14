@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowDown, faArrowUp, faLongArrowAltUp, faQuestionCircle, faThumbsDown, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Title, Meta } from '@angular/platform-browser';
 import { Sort } from '@angular/material/sort';
-import { ThrowStmt } from '@angular/compiler';
 import { faUps } from '@fortawesome/free-brands-svg-icons';
 import { stringify } from 'querystring';
 

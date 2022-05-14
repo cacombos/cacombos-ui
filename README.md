@@ -25,7 +25,7 @@ docker build -t cacombos/cacombos-ui .
 
 Requirements:
 
-* NodeJS 14
+* NodeJS 16
 * Angular CLI
 * Yarn
 
