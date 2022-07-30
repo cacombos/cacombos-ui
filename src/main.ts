@@ -8,7 +8,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 Sentry.init({
-  dsn: 'https://72faae6bd35144f7a39e95977609b469@sentry.truong.fi/4',
+  dsn: 'https://abe4089f5cce45e0b3392e75e131f164@o490284.ingest.sentry.io/5553964',
   release: environment.version,
   integrations: [
     new Integrations.BrowserTracing({
