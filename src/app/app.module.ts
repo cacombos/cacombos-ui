@@ -4,8 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxBootstrapMultiselectModule } from 'ngx-bootstrap-multiselect';
 import { NgHcaptchaModule } from 'ng-hcaptcha';
-import { Angulartics2Module } from 'angulartics2';
-import { Angulartics2Matomo } from 'angulartics2';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import * as Sentry from "@sentry/angular";
 
@@ -50,9 +48,6 @@ import { TermsPageComponent } from './terms-page/terms-page.component';
     NgxBootstrapMultiselectModule,
     NgHcaptchaModule.forRoot({ siteKey: 'a0ef7bfb-e3de-442c-a326-b30eefb32b2f' }),
     NoopAnimationsModule,
-    Angulartics2Module.forRoot({
-      developerMode: typeof document == 'undefined' || !environment.production
-    }),
     TransferHttpCacheModule,
     CookieModule.forRoot(),
   ],

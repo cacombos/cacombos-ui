@@ -6,7 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './api-service.service';
 import { isPlatformBrowser } from '@angular/common';
 import { ToastServiceService } from './toast-service.service';
-import { Angulartics2Matomo } from 'angulartics2';
 
 declare var _paq: any;
 
@@ -49,12 +48,8 @@ export class AppComponent {
     private route: ActivatedRoute,
     private api: ApiService,
     public toastService: ToastServiceService,
-    private angulartics2Matomo: Angulartics2Matomo,
     private sanitizer:DomSanitizer
   ) {
-    if (this.api.isBrowser) {
-      angulartics2Matomo.startTracking();
-    }
     this.CheckLogin();
     // this.checkConsent();
   }

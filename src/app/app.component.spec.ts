@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Angulartics2Module } from 'angulartics2';
 import { NgHcaptchaModule } from 'ng-hcaptcha';
 import { CookieModule, CookieService } from 'ngx-cookie';
 import { environment } from 'src/environments/environment';
@@ -18,9 +17,6 @@ describe('AppComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
         CookieModule.forRoot(),
-        Angulartics2Module.forRoot({
-          developerMode: typeof document == 'undefined' || !environment.production
-        }),
         FontAwesomeModule,
         NgbModule,
         NgHcaptchaModule,
