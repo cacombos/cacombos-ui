@@ -7,7 +7,7 @@ jobs:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
-        node-version: '14.15'
+        node-version: '16.20'
     - run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
     - run: echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list.d/google.list
     - run: DEBIAN_FRONTEND=noninteractive sudo apt-get update && sudo apt-get install google-chrome-stable -y -qq
