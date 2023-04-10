@@ -1,7 +1,10 @@
 <div class="container">
     <h1> How to contribute? </h1>
-    <p> Please help us build better website by sending your device UE Capability or any log file includes Carrier
-        Aggregation and Dual Connectivity combinations. We will publish supported combinations on our website.
+    <ngb-alert [dismissible]="false">
+    This site is in read-only mode. We do not accept new contributions. All new contributions should send to new <a target="_blank" rel="noopener" href="https://mobilecombos.com/contribute-combos/">Mobile Combos</a> site.
+      </ngb-alert>
+    <!-- <p> Please help us build better website by sending your device UE Capability or any log file includes Carrier
+        Aggregation and Dual Connectivity combinations. We will publish supported combinations on our website. -->
     <h2> 1. Get Carrier Aggregation combinations from your device </h2>
     <p> There is many way to get Carrier Aggregation combinations from devices. Here are instructions for mobile phones.
     </p>
@@ -464,12 +467,12 @@ cd scat</pre>
         </ngb-panel>
     </ngb-accordion>
     <br />
-    <h2> 2. Send UE Capability message or log file to us </h2>
+    <!-- <h2> 2. Send UE Capability message or log file to us </h2>
     <p> To help us to build even better 4G and 5G Combination page, please send your device modem logs, UE Capability
         Information message or other log file to improve our website. Don't share screenshots from applications like NetMonster because we can't use this data format. Alternatively, you may send send via email: <a
             href="mailto:combos@cacombos.com"> combos@cacombos.com </a>. Please include same details as shown in the form below.
-    </p>
-    <form method="POST" enctype="multipart/form-data" #ContributeForm="ngForm" (submit)="submitForm()">
+    </p> -->
+    <!-- <form method="POST" enctype="multipart/form-data" #ContributeForm="ngForm" (submit)="submitForm()">
         <div class="form-group">
             <label for="email"> Email address (optional)</label>
             <input type="email" class="form-control" name="email" id="email" [disabled]="!isBrowser" [class.is-invalid]="formData.email.length != 0 && !emailIsValid(formData.email)" [class.is-valid]="formData.email.length != 0 && emailIsValid(formData.email)" [(ngModel)]="formData.email"
@@ -528,7 +531,7 @@ cd scat</pre>
         <p>By submit I agree <a target="_blank" routerLink="/terms">terms</a> and <a target="_blank" routerLink="/privacy">privacy policy</a>.</p><br />
         <button [disabled]="submitDisabled || !isBrowser || !ContributeForm.form.valid || (formData.message.length == 0 && fileToUpload == null)" type="submit" name="submit"
             class="btn btn-primary">Submit</button>
-    </form>
+    </form> -->
     <br />
     <ng-container *ngIf="error != null">
         <ngb-alert type="danger" [dismissible]="false">
