@@ -9,7 +9,7 @@
     <p> There is many way to get Carrier Aggregation combinations from devices. Here are instructions for mobile phones.
     </p>
     <ngb-accordion>
-        <ngb-panel id="toggle-1" title="Qualcomm diag" [disabled]="!isBrowser">
+        <ngb-panel id="toggle-1" title="[root required] Qualcomm diag" [disabled]="!isBrowser">
             <ng-template ngbPanelContent>
                 <p> <i> This method should work every Qualcomm Android-devices and it require root.</i> </p>
                 <p> Download and extract <a target="_blank"
@@ -161,7 +161,7 @@ cd scat</pre>
                 <p>After logging, it's recommend turn off diag.</p>
             </ng-template>
         </ngb-panel>
-        <ngb-panel id="toggle-3" title="Network Signal Guru (Qualcomm, Exynos and Kirin, paid plan required)" [disabled]="!isBrowser">
+        <ngb-panel id="toggle-3" title="[root required, not on Kirin] Network Signal Guru (Qualcomm, Exynos and Kirin, paid plan required)" [disabled]="!isBrowser">
             <ng-template ngbPanelContent>
                 <p><i>Require rooted Qualcomm, Exynos or Hisilicon device and 50$/month license. </i></p>
                 <p><a target="_blank" rel="noopener" href="https://www.qtrun.com/en/?page_id=34">Network Signal Guru</a> application offer read signaling information and give supported CA Combinations from UE Capability Information signaling message.</p>
@@ -174,7 +174,7 @@ cd scat</pre>
                 </ul>
             </ng-template>
         </ngb-panel>
-        <ngb-panel id="toggle-4" title="Cellular Pro (Qualcomm only, paid plan required)" [disabled]="!isBrowser">
+        <ngb-panel id="toggle-4" title="[root required] Cellular Pro (Qualcomm only, paid plan required)" [disabled]="!isBrowser">
             <ng-template ngbPanelContent>
                 <p><i>Require Qualcomm device and rooted. Require paid license 24$/mo or 240$/year</i></p>
                 <p><a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=make.more.r2d2.google.cellular_pro&hl=en" >Cellular-Pro</a> application allow read signaling information and give supported Carrier Aggregation combinations from UE Capability information signaling message.</p>
@@ -402,7 +402,7 @@ cd scat</pre>
                 </ul>
             </ng-template>
         </ngb-panel>
-        <ngb-panel id="toggle-14" title="Shannon Devices" [disabled]="!isBrowser">
+        <ngb-panel id="toggle-14" title="[root required] Shannon Devices" [disabled]="!isBrowser">
             <ng-template ngbPanelContent>
                 <p>This works with Shannon modem devices except Samsung Exynos device (eg. Pixel 6 and 6 Pro). For Samsung, please use Exynos internal logging by exposing modem to Scat, ShannonDM or Airscreen. Require root.</p>
                 <ul>
